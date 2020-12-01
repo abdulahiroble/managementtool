@@ -3,24 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Login</title>
   </head>
   <body>
-    <img
-      th:src="@{img/Logo.png}"
-      class="logo"
-      src="/src/main/resources/static/img/Logo.png"
-      style="width: 110px; margin-top: -1%"
-      alt="logo"
-    />
-
-    <div class="first-page">
-      <a href="#"><h1 class="create-account">Create Account</h1></a>
-      <div class="text">Already have an account?</div>
-      <div class="login">
-        <span><a href="#">Login here</a></span>
-      </div>
-    </div>
+    <form action="#">
+      <label for="username">Username</label><br />
+      <input type="text" id="username" /><br /><br />
+      <label for="password">password</label><br />
+      <input type="password" id="password" /><br /><br />
+      <input type="submit" value="Login" />
+    </form>
   </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <img
+      th:src="@{img/Logo.png}"
+      class="logo"
+      src="/src/main/resources/static/img/Logo.png"
+      style="width: 110px; margin-top: -1%"
+      alt="logo"
+    />
+
+    <div class="first-page">
+      <a href="/createaccount"
+        ><h1 class="create-account">Create Account</h1></a
+      >
+      <div class="text">Already have an account?</div>
+      <div class="login">
+        <span><a href="/login">Login here</a></span>
+      </div>
+    </div>
+  </body>
+</html>
