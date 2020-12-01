@@ -1,13 +1,35 @@
 * {
-  paddding: 0;
+  padding: 0;
   margin: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
-.create-account {
-  background-color: lime;
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 350px !important;
+}
+
+.first-page {
+  margin-top: 60px;
+  background-color: limegreen;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: larger;
+}
+
+.create-account {
+  padding: 200px 200px 50px 200px;
+}
+
+.login {
+  margin-bottom: 200px;
+}
+
+a {
+  text-decoration: none;
 }
