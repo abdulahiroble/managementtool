@@ -19,7 +19,7 @@ public class ManagerRepository {
             preparedStatement.setString(3, manager.getCompany());
             preparedStatement.setString(4, manager.getEmail());
             preparedStatement.setString(5, manager.getPassword());
-            preparedStatement.setInt(6, manager.getPhone());
+            preparedStatement.setString(6, manager.getPhone());
 
             preparedStatement.execute();
         } catch (SQLException e) {

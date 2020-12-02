@@ -7,16 +7,20 @@ public class Manager {
     private String company;
     private String email;
     private String password;
-    private int phone;
+    private String phone;
     private int idmanager;
 
-    public Manager(String firstname, String lastname, String company, String email, String password, int phone) {
+    public Manager(String firstname, String lastname, String company, String email, String password, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.company = company;
         this.email = email;
         this.password = password;
         this.phone = phone;
+
+    }
+
+    public Manager() {
 
     }
 
@@ -60,11 +64,11 @@ public class Manager {
         this.password = password;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
