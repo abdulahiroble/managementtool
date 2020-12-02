@@ -10,6 +10,16 @@ public class Manager {
     private int phone;
     private int idmanager;
 
+    public Manager(String firstname, String lastname, String company, String email, String password, int phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.company = company;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+
+    }
+
     public String getFirstname() {
         return firstname;
     }
