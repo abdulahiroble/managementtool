@@ -13,6 +13,24 @@ public class Employee {
     private int phone;
     private int idemployee;
 
+    public Employee(String firstname, String lastname, String email, String password, String address, int postal, String city, String profession, int rate, int phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.postal = postal;
+        this.city = city;
+        this.profession = profession;
+        this.rate = rate;
+        this.phone = phone;
+    }
+
+    public Employee() {
+
+
+    }
+
     public String getFirstname() {
         return firstname;
     }
