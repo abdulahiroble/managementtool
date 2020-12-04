@@ -36,7 +36,7 @@ public class EmployeeRepository {
 
     public List<Employee> selectAllEmployeesFromDatabase() {
 
-        String selectAllEmployees = "SELECT * FROM employee WHERE managerid = ?;
+        String selectAllEmployees = "SELECT * FROM employee WHERE managerid = ?";
 
         List<Employee> allEmployees = new ArrayList<>();
 
