@@ -20,11 +20,11 @@ public class EmployeeRepository {
             preparedStatement.setString(3, employee.getEmail());
             preparedStatement.setString(4, employee.getPassword());
             preparedStatement.setString(5, employee.getAddress());
-            preparedStatement.setInt(6, employee.getPostal());
+            preparedStatement.setString(6, employee.getPostal());
             preparedStatement.setString(7, employee.getCity());
             preparedStatement.setString(8, employee.getProfession());
-            preparedStatement.setInt(9, employee.getRate());
-            preparedStatement.setInt(10, employee.getPostal());
+            preparedStatement.setString(9, employee.getRate());
+            preparedStatement.setString(10, employee.getPostal());
 
 
             preparedStatement.execute();
@@ -36,7 +36,7 @@ public class EmployeeRepository {
 
     public List<Employee> selectAllEmployeesFromDatabase() {
 
-        String selectAllEmployees = "SELECT * FROM employee WHERE managerid = ?";
+        String selectAllEmployees = "SELECT * FROM employee";
 
         List<Employee> allEmployees = new ArrayList<>();
 
@@ -52,11 +52,11 @@ public class EmployeeRepository {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getInt(6),
+                        resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getString(8),
-                        resultSet.getInt(9),
-                        resultSet.getInt(10)
+                        resultSet.getString(9),
+                        resultSet.getString(10)
                 );
                 allEmployees.add(tmpEmployee);
             }
@@ -87,11 +87,11 @@ public class EmployeeRepository {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getInt(6),
+                        resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getString(8),
-                        resultSet.getInt(9),
-                        resultSet.getInt(10)
+                        resultSet.getString(9),
+                        resultSet.getString(10)
                 );
             }
         } catch (SQLException e) {

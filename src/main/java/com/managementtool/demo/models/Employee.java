@@ -6,14 +6,14 @@ public class Employee {
     private String email;
     private String password;
     private String address;
-    private int postal;
+    private String postal;
     private String city;
     private String profession;
-    private int rate;
-    private int phone;
-    private int idemployee;
+    private String rate;
+    private String phone;
+    private String idemployee;
 
-    public Employee(String firstname, String lastname, String email, String password, String address, int postal, String city, String profession, int rate, int phone) {
+    public Employee(String firstname, String lastname, String email, String password, String address, String postal, String city, String profession, String rate, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -71,11 +71,11 @@ public class Employee {
         this.address = address;
     }
 
-    public int getPostal() {
+    public String getPostal() {
         return postal;
     }
 
-    public void setPostal(int postal) {
+    public void setPostal(String postal) {
         this.postal = postal;
     }
 
@@ -95,27 +95,27 @@ public class Employee {
         this.profession = profession;
     }
 
-    public int getRate() {
+    public String getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(String rate) {
         this.rate = rate;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public int getIdemployee() {
+    public String getIdemployee() {
         return idemployee;
     }
 
-    public void setIdemployee(int idemployee) {
+    public void setIdemployee(String idemployee) {
         this.idemployee = idemployee;
     }
 }
