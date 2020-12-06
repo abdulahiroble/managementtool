@@ -24,6 +24,11 @@ public class Manager {
 
     }
 
+    public Manager(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public String getFirstname() {
         return firstname;
     }

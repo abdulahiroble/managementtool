@@ -1,5 +1,7 @@
 package com.managementtool.demo.controller;
+import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.services.EmployeeService;
 import com.managementtool.demo.services.ManagerService;
 import org.springframework.ui.Model;
 
@@ -8,14 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     Manager manager = new Manager();
     ManagerService managerService = new ManagerService();
+    Employee employee = new Employee();
+    EmployeeService employeeService = new EmployeeService();
 
     @GetMapping("/createaccount")
     public String createAccount(Model managerModel) {
@@ -52,5 +58,37 @@ public class LoginController {
          return "home";
 
     }
+
+
+    @PostMapping("/postLogin")
+    public String userLogin(WebRequest dataFromForm, HttpServletResponse response)
+    {
+
+        List<Manager> managerFromDB = managerService.getAllManagersLoginInformation();
+        List<Employee> employeeFromDB = employeeService.getAllEmployeesLoginInformation();
+
+        String enteredEmail = dataFromForm.getParameter("email");
+        String enteredPassword = dataFromForm.getParameter("password");
+
+        for(Manager manager : managerFromDB)
+            if(manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword))
+                return "redirect:/projects";
+
+        for(Employee employee : employeeFromDB)
+            if(employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword))
+            {
+                // employee = userService.loggedInUser(enteredEmail, enteredPassword);
+
+               // String id = "" + userService.getSingleUser(dataFromForm.getParameter("email")).getIdUser();
+               // Cookie cookie = new Cookie("id", id);
+               // response.addCookie(cookie);
+
+                return "redirect:/mytask";
+            }
+
+        return "redirect:/create";
+    }
+
+
     
 }

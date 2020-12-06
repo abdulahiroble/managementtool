@@ -1,6 +1,7 @@
 package com.managementtool.demo.services;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.repository.EmployeeRepository;
 
 import java.util.List;
@@ -17,5 +18,10 @@ public class EmployeeService {
 
         return allEmployees;
     }
+
+    public List<Employee> getAllEmployeesLoginInformation() {
+        return employeeRepository.selectAllEmployeesLoginInformationFromDatabase();
+    }
+
 
 }

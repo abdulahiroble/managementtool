@@ -31,6 +31,12 @@ public class Employee {
 
     }
 
+    public Employee(String email, String password) {
+        this.email = email;
+        this.password = password;
+
+    }
+
     public String getFirstname() {
         return firstname;
     }
