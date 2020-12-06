@@ -12,9 +12,9 @@ public class ManagerService {
     public void insertNewManager(Manager manager) {
         managerRepository.insertUserIntoDatabase(manager);
     }
-}
 
     public List<Manager> getAllManagersLoginInformation() {
         return managerRepository.selectAllManagersLoginInformationFromDatabase();
     }
 
+}

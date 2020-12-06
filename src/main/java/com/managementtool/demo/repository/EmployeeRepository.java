@@ -9,9 +9,8 @@ import java.util.List;
 
 public class EmployeeRepository {
 
-
     public void insertEmployeeIntoDatabase(Employee employee) {
-        String insertUserSQL  ="INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -27,13 +26,11 @@ public class EmployeeRepository {
             preparedStatement.setString(9, employee.getRate());
             preparedStatement.setString(10, employee.getPostal());
 
-
             preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-
 
     public List<Employee> selectAllEmployeesFromDatabase() {
 
@@ -46,19 +43,11 @@ public class EmployeeRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
-                Employee tmpEmployee = new Employee(
-                        resultSet.getString(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7),
-                        resultSet.getString(8),
-                        resultSet.getString(9),
-                        resultSet.getString(10)
-                );
+            while (resultSet.next()) {
+                Employee tmpEmployee = new Employee(resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
+                        resultSet.getString(7), resultSet.getString(8), resultSet.getString(9),
+                        resultSet.getString(10));
                 allEmployees.add(tmpEmployee);
             }
 
@@ -67,7 +56,6 @@ public class EmployeeRepository {
         }
         return allEmployees;
     }
-
 
     public Employee selectEmployeeFromDatabase(int idEmployee) {
 
@@ -82,25 +70,15 @@ public class EmployeeRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                employeeToReturn = new Employee(
-                        resultSet.getString(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7),
-                        resultSet.getString(8),
-                        resultSet.getString(9),
-                        resultSet.getString(10)
-                );
+                employeeToReturn = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),
+                        resultSet.getString(8), resultSet.getString(9), resultSet.getString(10));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return employeeToReturn;
     }
-
 
     public List<Employee> selectAllEmployeesLoginInformationFromDatabase() {
 
@@ -113,11 +91,8 @@ public class EmployeeRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
-                Employee tmpEmployee = new Employee(
-                        resultSet.getString(1),
-                        resultSet.getString(2)
-                );
+            while (resultSet.next()) {
+                Employee tmpEmployee = new Employee(resultSet.getString(3), resultSet.getString(4));
                 allEmployeesLoginInformation.add(tmpEmployee);
             }
 
@@ -127,10 +102,9 @@ public class EmployeeRepository {
         return allEmployeesLoginInformation;
     }
 
-
-
     public Connection establishConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool", "managementtool", "Ef2y7M!d!rA8");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
+                "managementtool", "Ef2y7M!d!rA8");
 
         return connection;
     }
