@@ -77,7 +77,7 @@ public class LoginController {
         for(Employee employee : employeeFromDB)
             if(employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword))
             {
-                // employee = userService.loggedInUser(enteredEmail, enteredPassword);
+                employee = employeeSerivce.loggedInUser(enteredEmail, enteredPassword);
 
                // String id = "" + userService.getSingleUser(dataFromForm.getParameter("email")).getIdUser();
                // Cookie cookie = new Cookie("id", id);

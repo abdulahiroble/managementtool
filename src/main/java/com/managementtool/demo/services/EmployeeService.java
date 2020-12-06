@@ -23,5 +23,16 @@ public class EmployeeService {
         return employeeRepository.selectAllEmployeesLoginInformationFromDatabase();
     }
 
+    public Employee loggedInEmployee(String email, String password){
+
+        for(Employee e : allEmployees){
+            if(email.equals(e.getEmail()) && password.equals(e.getPassword())){
+                employee = e;
+            }
+        }
+
+        return employee;
+    }
+
 
 }
