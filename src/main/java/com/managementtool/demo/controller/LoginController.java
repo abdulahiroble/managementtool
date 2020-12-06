@@ -1,4 +1,5 @@
 package com.managementtool.demo.controller;
+
 import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.services.EmployeeService;
@@ -31,10 +32,16 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String loginAccount() {
+    public String loginAccount(Model usermModel) {
+
+        Manager managerToDisplay = new Manager();
+
+        usermModel.addAttribute("employeeService", employeeService);
+
+        usermModel.addAttribute("managerToDisplay", managerToDisplay);
+
         return "login";
     }
-
 
     @PostMapping("/postCreate")
     public String postCreate(WebRequest dataFromForm, HttpServletResponse response) {
@@ -55,14 +62,12 @@ public class LoginController {
 
         }
 
-         return "home";
+        return "home";
 
     }
 
-
     @PostMapping("/postLogin")
-    public String userLogin(WebRequest dataFromForm, HttpServletResponse response)
-    {
+    public String userLogin(WebRequest dataFromForm, HttpServletResponse response) {
 
         List<Manager> managerFromDB = managerService.getAllManagersLoginInformation();
         List<Employee> employeeFromDB = employeeService.getAllEmployeesLoginInformation();
@@ -70,18 +75,18 @@ public class LoginController {
         String enteredEmail = dataFromForm.getParameter("email");
         String enteredPassword = dataFromForm.getParameter("password");
 
-        for(Manager manager : managerFromDB)
-            if(manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword))
+        for (Manager manager : managerFromDB)
+            if (manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword))
                 return "redirect:/projects";
 
-        for(Employee employee : employeeFromDB)
-            if(employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword))
-            {
+        for (Employee employee : employeeFromDB)
+            if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
                 // employee = userService.loggedInUser(enteredEmail, enteredPassword);
 
-               // String id = "" + userService.getSingleUser(dataFromForm.getParameter("email")).getIdUser();
-               // Cookie cookie = new Cookie("id", id);
-               // response.addCookie(cookie);
+                // String id = "" +
+                // userService.getSingleUser(dataFromForm.getParameter("email")).getIdUser();
+                // Cookie cookie = new Cookie("id", id);
+                // response.addCookie(cookie);
 
                 return "redirect:/mytask";
             }
@@ -89,6 +94,4 @@ public class LoginController {
         return "redirect:/create";
     }
 
-
-    
 }

@@ -2,18 +2,14 @@ package com.managementtool.demo.repository;
 
 import com.managementtool.demo.models.Manager;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ManagerRepository {
 
-
-
     public void insertUserIntoDatabase(Manager manager) {
-        String insertUserSQL  ="INSERT INTO manager (firstname, lastname, company, email, password, phone) VALUES (?, ?, ?, ?, ?, ?)";
+        String insertUserSQL = "INSERT INTO manager (firstname, lastname, company, email, password, phone) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -42,11 +38,8 @@ public class ManagerRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
-                Manager tmpManager = new Manager(
-                        resultSet.getString(1),
-                        resultSet.getString(2)
-                );
+            while (resultSet.next()) {
+                Manager tmpManager = new Manager(resultSet.getString(4), resultSet.getString(6));
                 allManagersLoginInformation.add(tmpManager);
             }
 
@@ -56,15 +49,9 @@ public class ManagerRepository {
         return allManagersLoginInformation;
     }
 
-
-
-
-
-
-
-
     public Connection establishConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool", "managementtool", "Ef2y7M!d!rA8");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
+                "managementtool", "Ef2y7M!d!rA8");
 
         return connection;
     }
