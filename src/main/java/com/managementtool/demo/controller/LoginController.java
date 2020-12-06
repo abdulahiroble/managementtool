@@ -77,21 +77,29 @@ public class LoginController {
 
         for (Manager manager : managerFromDB)
             if (manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword))
-                return "redirect:/projects";
+
+                // manager = managerService.loggedInManager(enteredEmail, enteredPassword);
+                // String id1 = "" + managerService.getSingleManager(dataFromForm.getParameter("email")).getIdmanager();
+                // Cookie cookie1 = new Cookie("id1", id1);
+                // response.addCookie(cookie1);
+
+
+        return "redirect:/projects";
+
 
         for (Employee employee : employeeFromDB)
             if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
-                // employee = userService.loggedInUser(enteredEmail, enteredPassword);
 
-                // String id = "" +
-                // userService.getSingleUser(dataFromForm.getParameter("email")).getIdUser();
-                // Cookie cookie = new Cookie("id", id);
-                // response.addCookie(cookie);
+                employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
+                String id2 = "" + employeeService.getSingleEmployee(dataFromForm.getParameter("email")).getIdemployee();
+                Cookie cookie2 = new Cookie("id2", id2);
+                response.addCookie(cookie2);
 
                 return "redirect:/mytask";
             }
 
         return "redirect:/create";
     }
+
 
 }

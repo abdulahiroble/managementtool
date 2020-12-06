@@ -61,7 +61,7 @@ public class EmployeeRepository {
 
         Employee employeeToReturn = new Employee();
 
-        String selectEmployee = "SELECT * FROM employee WHERE idemployee = ?";
+        String selectEmployee = "SELECT * FROM employee";
 
         try {
             PreparedStatement preparedStatement = establishConnection().prepareStatement(selectEmployee);
@@ -79,6 +79,44 @@ public class EmployeeRepository {
         }
         return employeeToReturn;
     }
+
+
+
+    public Employee selectEmployeeFromDatabaseFromEmail(String email) {
+
+        Employee employeeToReturn = new Employee();
+
+        String selectEmployee = "SELECT * FROM employee WHERE email = ?";
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectEmployee);
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                employeeToReturn = new Employee(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10)
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return employeeToReturn;
+    }
+
+
+
+
 
     public List<Employee> selectAllEmployeesLoginInformationFromDatabase() {
 

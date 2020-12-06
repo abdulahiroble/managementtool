@@ -8,6 +8,8 @@ import java.util.List;
 
 public class EmployeeService {
     EmployeeRepository employeeRepository = new EmployeeRepository();
+    public List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();
+    Employee employee = new Employee();
 
     public void insertNewEmployee(Employee employee) { employeeRepository.insertEmployeeIntoDatabase(employee); }
 
@@ -33,6 +35,18 @@ public class EmployeeService {
 
         return employee;
     }
+
+    public Employee getEmployeeByID(int idEmployee)
+    {
+        return employeeRepository.selectEmployeeFromDatabase(idEmployee);
+    }
+
+
+    public Employee getSingleEmployee(String email){
+        return employeeRepository.selectEmployeeFromDatabaseFromEmail(email);
+    }
+
+
 
 
 }
