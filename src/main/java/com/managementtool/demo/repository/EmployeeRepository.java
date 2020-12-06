@@ -1,6 +1,7 @@
 package com.managementtool.demo.repository;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.Manager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -100,6 +101,31 @@ public class EmployeeRepository {
         return employeeToReturn;
     }
 
+
+    public List<Employee> selectAllEmployeesLoginInformationFromDatabase() {
+
+        String selectAllUsers = "SELECT * FROM employee";
+
+        List<Employee> allEmployeesLoginInformation = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectAllUsers);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                Employee tmpEmployee = new Employee(
+                        resultSet.getString(1),
+                        resultSet.getString(2)
+                );
+                allEmployeesLoginInformation.add(tmpEmployee);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return allEmployeesLoginInformation;
+    }
 
 
 
