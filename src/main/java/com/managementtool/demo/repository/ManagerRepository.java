@@ -1,7 +1,11 @@
 package com.managementtool.demo.repository;
 
 import com.managementtool.demo.models.Manager;
+
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ManagerRepository {
@@ -25,6 +29,31 @@ public class ManagerRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public List<Manager> selectAllManagersLoginInformationFromDatabase() {
+
+        String selectAllUsers = "SELECT * FROM manager";
+
+        List<Manager> allManagersLoginInformation = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectAllUsers);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                Manager tmpManager = new Manager(
+                        resultSet.getString(1),
+                        resultSet.getString(2)
+                );
+                allManagersLoginInformation.add(tmpManager);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return allManagersLoginInformation;
     }
 
 
