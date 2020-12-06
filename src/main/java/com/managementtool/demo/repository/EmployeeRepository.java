@@ -61,7 +61,7 @@ public class EmployeeRepository {
 
         Employee employeeToReturn = new Employee();
 
-        String selectEmployee = "SELECT * FROM employee";
+        String selectEmployee = "SELECT * FROM employee WHERE idemployee = ?";
 
         try {
             PreparedStatement preparedStatement = establishConnection().prepareStatement(selectEmployee);
@@ -70,9 +70,10 @@ public class EmployeeRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                employeeToReturn = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+                employeeToReturn = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
                         resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),
-                        resultSet.getString(8), resultSet.getString(9), resultSet.getString(10));
+                        resultSet.getString(8), resultSet.getString(9), resultSet.getString(10),
+                        resultSet.getString(11));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -80,7 +81,31 @@ public class EmployeeRepository {
         return employeeToReturn;
     }
 
+    // public Employee updateEmployeeInDatabase(int idEmployee) {
 
+    // Employee updateEmployee = new Employee();
+
+    // String updateemployeeSQL = "UPDATE employees SET email = ?, firstname = ?,
+    // lastname = ?, WHERE idemployee = ?";
+    // try {
+    // PreparedStatement preparedStatement =
+    // establishConnection().prepareStatement(updateemployeeSQL);
+    // preparedStatement.setInt(1, idEmployee);
+
+    // ResultSet resultSet = preparedStatement.executeQuery();
+    // while (resultSet.next()) {
+    // updateEmployee = new Employee(resultSet.getString(1), resultSet.getString(2),
+    // resultSet.getString(3),
+    // resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
+    // resultSet.getString(7),
+    // resultSet.getString(8), resultSet.getString(9), resultSet.getString(10));
+    // }
+    // } catch (SQLException e) {
+    // System.out.println(e.getMessage());
+    // }
+
+    // return updateEmployee;
+    // }
 
     public Employee selectEmployeeFromDatabaseFromEmail(String email) {
 
@@ -95,28 +120,15 @@ public class EmployeeRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                employeeToReturn = new Employee(
-                        resultSet.getString(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7),
-                        resultSet.getString(8),
-                        resultSet.getString(9),
-                        resultSet.getString(10)
-                );
+                employeeToReturn = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),
+                        resultSet.getString(8), resultSet.getString(9), resultSet.getString(10));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return employeeToReturn;
     }
-
-
-
-
 
     public List<Employee> selectAllEmployeesLoginInformationFromDatabase() {
 
