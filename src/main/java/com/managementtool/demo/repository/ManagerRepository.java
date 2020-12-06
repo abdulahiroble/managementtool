@@ -1,5 +1,6 @@
 package com.managementtool.demo.repository;
 
+import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
 
 import java.sql.*;
@@ -49,10 +50,73 @@ public class ManagerRepository {
         return allManagersLoginInformation;
     }
 
+
+
+    public Manager selectManagerFromDatabaseFromEmail(String email) {
+
+        Manager managerToReturn = new Manager();
+
+        String selectManager = "SELECT * FROM employee WHERE email = ?";
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectManager);
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                managerToReturn = new Manager(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)
+
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return managerToReturn;
+    }
+
+    public List<Manager> selectAllManagersFromDatabase() {
+
+        String selectAllManagers = "SELECT * FROM manager";
+
+        List<Manager> allManagers = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectAllManagers);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Manager tmpManager = new Manager(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6));
+                allManagers.add(tmpManager);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return allManagers;
+    }
+
+
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");
 
         return connection;
     }
+
+
+
 }
