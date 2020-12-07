@@ -10,6 +10,7 @@ public class EmployeeService {
     EmployeeRepository employeeRepository = new EmployeeRepository();
     public List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();
     Employee employee = new Employee();
+    public List<Employee> employeeList;
 
     public void insertNewEmployee(Employee employee) {
         employeeRepository.insertEmployeeIntoDatabase(employee);
@@ -52,6 +53,10 @@ public class EmployeeService {
     public Employee employeeToDisplay() {
         return employee;
 
+    }
+
+    public List<Employee> getEmployeelist() {
+        employeeList = employeeRepository.selectAllEmployeesFromDatabase();
     }
 
 }

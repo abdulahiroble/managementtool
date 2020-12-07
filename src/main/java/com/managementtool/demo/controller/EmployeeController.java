@@ -92,7 +92,7 @@ public class EmployeeController {
 
 
 
-            model.addAttribute("listEmployee", listEmployee);
+            // model.addAttribute("listEmployee", listEmployee);
 
         } catch (Exception e) {
             System.out.println("Error can't load up list " + e);
