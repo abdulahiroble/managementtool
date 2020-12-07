@@ -1,40 +1,35 @@
 package com.managementtool.demo.models;
 
 public class Status {
-    private int idstatus;
-    private String done;
-    private String ongoing;
-    private String overdue;
 
-    public int getIdstatus() {
-        return idstatus;
+    private String statusName;
+
+
+    public Status(String statusName) {
+        this.statusName = statusName;
     }
 
-    public void setIdstatus(int idstatus) {
-        this.idstatus = idstatus;
+    public Status() {
+
     }
 
-    public String getDone() {
-        return done;
+
+    public int getIdStatus() {
+        return idStatus;
     }
 
-    public void setDone(String done) {
-        this.done = done;
+    public void setIdStatus(int idStatus) {
+        this.idStatus = idStatus;
     }
 
-    public String getOngoing() {
-        return ongoing;
+    private int idStatus;
+
+
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setOngoing(String ongoing) {
-        this.ongoing = ongoing;
-    }
-
-    public String getOverdue() {
-        return overdue;
-    }
-
-    public void setOverdue(String overdue) {
-        this.overdue = overdue;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

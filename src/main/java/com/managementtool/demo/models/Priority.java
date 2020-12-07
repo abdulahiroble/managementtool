@@ -1,40 +1,38 @@
 package com.managementtool.demo.models;
 
 public class Priority {
-    private String high;
-    private String medium;
-    private String low;
-    private int idpriority;
 
-    public String getHigh() {
-        return high;
+    private String priorityName;
+    private int idPriority;
+
+    public Priority(String priorityName) {
+        this.priorityName = priorityName;
+
     }
 
-    public void setHigh(String high) {
-        this.high = high;
+    public Priority() {
+
     }
 
-    public String getMedium() {
-        return medium;
+    public int getIdPriority() {
+        return idPriority;
     }
 
-    public void setMedium(String medium) {
-        this.medium = medium;
+    public void setIdPriority(int idPriority) {
+        this.idPriority = idPriority;
     }
 
-    public String getLow() {
-        return low;
+
+
+    public String getPriorityName() {
+        return priorityName;
     }
 
-    public void setLow(String low) {
-        this.low = low;
+    public void setPriorityName(String priorityName) {
+        this.priorityName = priorityName;
     }
 
-    public int getIdpriority() {
-        return idpriority;
-    }
 
-    public void setIdpriority(int idpriority) {
-        this.idpriority = idpriority;
-    }
+
+
 }
