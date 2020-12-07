@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 public class EmployeeController {
     Employee employee = new Employee();
     EmployeeService employeeService = new EmployeeService();
+    List<Employee> listEmployee;
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model) {
@@ -79,9 +80,17 @@ public class EmployeeController {
 
     public String showEmployeeList(Model model) {
 
+        employeeService.setEmployeeToDefault();
+
         try {
 
-            List<Employee> listEmployee = employeeService.getAllEmployees();
+            for(Employee e : listEmployee) {
+                employeeService.employeeToDisplay().setFirstname(e.getFirstname());
+                employeeService.employeeToDisplay().setLastname(e.getLastname());
+
+            }
+
+
 
             model.addAttribute("listEmployee", listEmployee);
 

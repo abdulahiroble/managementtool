@@ -45,4 +45,13 @@ public class EmployeeService {
         return employeeRepository.selectEmployeeFromDatabaseFromEmail(email);
     }
 
+    public void setEmployeeToDefault() {
+        employee = new Employee();
+    }
+
+    public Employee employeeToDisplay() {
+        return employee;
+
+    }
+
 }

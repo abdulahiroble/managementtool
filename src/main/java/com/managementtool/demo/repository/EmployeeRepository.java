@@ -24,7 +24,7 @@ public class EmployeeRepository {
             preparedStatement.setString(7, employee.getCity());
             preparedStatement.setString(8, employee.getProfession());
             preparedStatement.setString(9, employee.getRate());
-            preparedStatement.setString(10, employee.getPostal());
+            preparedStatement.setString(10, employee.getPhone());
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -44,10 +44,18 @@ public class EmployeeRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Employee tmpEmployee = new Employee(resultSet.getString(1), resultSet.getString(2),
-                        resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
-                        resultSet.getString(7), resultSet.getString(8), resultSet.getString(9),
-                        resultSet.getString(10));
+                Employee tmpEmployee = new Employee(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10),
+                        resultSet.getString(11));
                 allEmployees.add(tmpEmployee);
             }
 

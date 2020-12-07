@@ -31,7 +31,7 @@ public class Employee {
 
     }
 
-    public Employee(int idemployee, String firstname, String lastname, String email, String password, String address,
+   public Employee(int idemployee, String firstname, String lastname, String email, String password, String address,
             String postal, String city, String profession, String rate, String phone) {
         this.idemployee = idemployee;
         this.firstname = firstname;
@@ -45,6 +45,7 @@ public class Employee {
         this.rate = rate;
         this.phone = phone;
     }
+
 
     public Employee(String email, String password) {
         this.email = email;
