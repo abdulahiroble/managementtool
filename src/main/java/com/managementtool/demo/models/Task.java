@@ -2,12 +2,21 @@ package com.managementtool.demo.models;
 
 public class Task {
     private String taskname;
-    private String status;
-    private String priority;
-    private int time;
-    private int cost;
+    private String time;
+    private String cost;
     private String deadline;
     private int idtask;
+
+    public Task(String taskname, String time, String cost, String deadline) {
+        this.taskname = taskname;
+        this.time = time;
+        this.cost = cost;
+        this.deadline = deadline;
+    }
+
+    public Task() {
+
+    }
 
     public String getTaskname() {
         return taskname;
@@ -17,35 +26,19 @@ public class Task {
         this.taskname = taskname;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public int getCost() {
+    public String getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 

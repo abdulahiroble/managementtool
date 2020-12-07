@@ -1,10 +1,20 @@
 package com.managementtool.demo.models;
 
+import java.util.Date;
+
 public class Subtask {
     private String subtaskname;
-    private String status;
-    private String date;
+    private Date date;
     private int idsubtask;
+
+    public Subtask(String subtaskname, Date date) {
+        this.subtaskname = subtaskname;
+        this.date = date;
+    }
+
+    public Subtask() {
+
+    }
 
     public String getSubtaskname() {
         return subtaskname;
@@ -14,19 +24,12 @@ public class Subtask {
         this.subtaskname = subtaskname;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
