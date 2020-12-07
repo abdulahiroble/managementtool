@@ -6,6 +6,15 @@ public class Project {
     private String profession;
     private int idproject;
 
+    public Project(String projectname, String category) {
+        this.projectname = projectname;
+        this.category = category;
+    }
+
+    public Project() {
+
+    }
+
     public String getProjectname() {
         return projectname;
     }
