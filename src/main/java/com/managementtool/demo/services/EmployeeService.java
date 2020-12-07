@@ -11,8 +11,9 @@ public class EmployeeService {
     public List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();
     Employee employee = new Employee();
 
-    public void insertNewEmployee(Employee employee) { employeeRepository.insertEmployeeIntoDatabase(employee); }
-
+    public void insertNewEmployee(Employee employee) {
+        employeeRepository.insertEmployeeIntoDatabase(employee);
+    }
 
     public List<Employee> getAllEmployees() {
 
@@ -25,10 +26,10 @@ public class EmployeeService {
         return employeeRepository.selectAllEmployeesLoginInformationFromDatabase();
     }
 
-    public Employee loggedInEmployee(String email, String password){
+    public Employee loggedInEmployee(String email, String password) {
 
-        for(Employee e : allEmployees){
-            if(email.equals(e.getEmail()) && password.equals(e.getPassword())){
+        for (Employee e : allEmployees) {
+            if (email.equals(e.getEmail()) && password.equals(e.getPassword())) {
                 employee = e;
             }
         }
@@ -36,17 +37,12 @@ public class EmployeeService {
         return employee;
     }
 
-    public Employee getEmployeeByID(int idEmployee)
-    {
+    public Employee getEmployeeByID(int idEmployee) {
         return employeeRepository.selectEmployeeFromDatabase(idEmployee);
     }
 
-
-    public Employee getSingleEmployee(String email){
+    public Employee getSingleEmployee(String email) {
         return employeeRepository.selectEmployeeFromDatabaseFromEmail(email);
     }
-
-
-
 
 }

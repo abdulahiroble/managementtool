@@ -11,9 +11,10 @@ public class Employee {
     private String profession;
     private String rate;
     private String phone;
-    private String idemployee;
+    private int idemployee;
 
-    public Employee(String firstname, String lastname, String email, String password, String address, String postal, String city, String profession, String rate, String phone) {
+    public Employee(String firstname, String lastname, String email, String password, String address, String postal,
+            String city, String profession, String rate, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -28,7 +29,21 @@ public class Employee {
 
     public Employee() {
 
+    }
 
+    public Employee(int idemployee, String firstname, String lastname, String email, String password, String address,
+            String postal, String city, String profession, String rate, String phone) {
+        this.idemployee = idemployee;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.postal = postal;
+        this.city = city;
+        this.profession = profession;
+        this.rate = rate;
+        this.phone = phone;
     }
 
     public Employee(String email, String password) {
@@ -117,11 +132,11 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getIdemployee() {
+    public int getIdemployee() {
         return idemployee;
     }
 
-    public void setIdemployee(String idemployee) {
+    public void setIdemployee(int idemployee) {
         this.idemployee = idemployee;
     }
 }
