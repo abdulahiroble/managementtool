@@ -1,12 +1,15 @@
 package com.managementtool.demo.services;
 
-import com.managementtool.demo.models.Employee;
-import com.managementtool.demo.models.Manager;
-import com.managementtool.demo.repository.EmployeeRepository;
-
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
+import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.repository.EmployeeRepository;
+
 public class EmployeeService {
+    
     EmployeeRepository employeeRepository = new EmployeeRepository();
     public List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();
     Employee employee = new Employee();
@@ -15,6 +18,21 @@ public class EmployeeService {
     public void insertNewEmployee(Employee employee) {
         employeeRepository.insertEmployeeIntoDatabase(employee);
     }
+
+/*     public int getCookieId(HttpServletRequest request) {
+
+		Cookie cookie[] = request.getCookies();
+
+		Cookie cookieId = new Cookie("id", "");
+
+		for (Cookie cookie1 : cookie) {
+			if (cookie1.getName().equals("id")) {
+				cookieId.setValue(cookie1.getValue());
+			}
+		}
+		
+		return Integer.parseInt(cookieId.getValue());
+	} */
 
     
 

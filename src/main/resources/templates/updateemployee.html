@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,21 +7,31 @@
   </head>
   <body>
     <form
-      class="form"
       action="#"
       th:action="@{/updateEmployee}"
-      method="post"
       th:object="${employeeToView}"
+      method="POST"
     >
       <input type="hidden" th:field="*{idemployee}" />
 
-      <label for="firstname">First Name:</label><br />
       <input
         type="text"
         id="firstname"
         th:field="*{firstname}"
         name="firstname"
       /><br /><br />
+
+      <!-- <div th:insert="Fragments/header :: header"></div> -->
+
+      <!--     <form class="form" action="/updateEmployee" method="POST">
+      <input type="hidden" th:value="${employeeToView.getIdemployee()}" />
+      <label for="firstname">First Name:</label><br />
+      <input
+        type="text"
+        id="firstname"
+        th:value="${employeeToView.getFirstname()}"
+        name="firstname"
+      /><br /><br /> -->
 
       <!-- <label for="lastname">Last Name:</label><br>
         <input type="text" id="lastname" name="lastname" th:field="*{lastname}"><br><br>

@@ -33,12 +33,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") Employee employee, int idEmployee) {
+    public String updateEmployee(@ModelAttribute("employee") Employee employee) {
 
-        Employee employeeid = employeeService.getEmployeeByID(idEmployee);
+        // int cookieId = employeeService.getCookieId(request);
+        // Employee employeeid = employeeService.getEmployeeByID(employee);
 
         try {
-            employeeService.updateEmployee(employeeid);
+            employeeService.updateEmployee(employee);
             System.out.println("Saved to db");
         } catch (Exception e) {
             System.out.println("Error can't update employee " + e);
@@ -60,7 +61,7 @@ public class EmployeeController {
 
             employeeService.updateEmployee(updateEmployee);
 
-
+            System.out.println("Saved to db");
         } catch (Exception e) {
             System.out.println("Error can't save to database " + e);
         }
@@ -103,6 +104,7 @@ public class EmployeeController {
         try {
 
             Employee employeeToView = employeeService.getEmployeeByID(idemployee);
+
 
             model.addAttribute("employeeToView", employeeToView);
         } catch (Exception e) {
