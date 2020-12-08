@@ -42,10 +42,6 @@ public class EmployeeService {
         return employeeRepository.selectEmployeeFromDatabase(idEmployee);
     }
 
-    public Employee getEmployeeID(int idEmployee) {
-        return employeeRepository.selectEmployeeFromDatabase(idEmployee);
-    }
-
     public Employee getSingleEmployee(String email) {
         return employeeRepository.selectEmployeeFromDatabaseFromEmail(email);
     }
@@ -56,6 +52,11 @@ public class EmployeeService {
 
     public void updateEmployee(Employee employee) {
         employeeRepository.updateEmployeeInDatabase(employee);
+    }
+
+    public void deleteEmployee(int id) {
+
+        employeeRepository.deleteEmployeeFromDatabase(id);
     }
 
     public Employee employeeToDisplay() {
