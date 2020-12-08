@@ -16,6 +16,8 @@ public class EmployeeService {
         employeeRepository.insertEmployeeIntoDatabase(employee);
     }
 
+    
+
     public List<Employee> getAllEmployees() {
 
         List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();

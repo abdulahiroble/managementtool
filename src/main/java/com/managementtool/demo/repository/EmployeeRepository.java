@@ -83,17 +83,17 @@ public class EmployeeRepository {
 
     public void updateEmployeeInDatabase(Employee employee) {
 
-        String updateemployeeSQL = "UPDATE employee SET firstname = ?, lastname = ?, address = ?, postal = ?, city = ?, profession = ?, rate = ? WHERE idemployee = ?";
+        String updateemployeeSQL = "UPDATE employee SET firstname = ?";
         try {
             PreparedStatement preparedStatement = establishConnection().prepareStatement(updateemployeeSQL);
 
             preparedStatement.setString(1, employee.getFirstname());
-            preparedStatement.setString(2, employee.getLastname());
+            /* preparedStatement.setString(2, employee.getLastname());
             preparedStatement.setString(3, employee.getAddress());
             preparedStatement.setString(4, employee.getPostal());
             preparedStatement.setString(5, employee.getCity());
             preparedStatement.setString(6, employee.getProfession());
-            preparedStatement.setString(7, employee.getRate());
+            preparedStatement.setString(7, employee.getRate()); */
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
