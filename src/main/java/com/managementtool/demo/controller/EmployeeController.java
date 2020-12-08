@@ -46,15 +46,8 @@ public class EmployeeController {
     @PostMapping("/postCreateEmployee")
     public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response) {
 
-        Employee updateEmployee = new Employee();
-
         try {
-           if(!dataFromForm.getParameter("firstname").equals("")) {
-               String updatedFirstname = String.valueOf(dataFromForm.getParameter("firstname"));
-               updateEmployee.setFirstname(updatedFirstname);
-           }
-
-
+            String firstname = dataFromForm.getParameter("firstname");
             String lastname = dataFromForm.getParameter("lastname");
             String email = dataFromForm.getParameter("email");
             String password = dataFromForm.getParameter("password");
