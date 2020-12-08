@@ -42,6 +42,10 @@ public class EmployeeService {
         return employeeRepository.selectEmployeeFromDatabase(idEmployee);
     }
 
+    public Employee getEmployeeID(int idEmployee) {
+        return employeeRepository.selectEmployeeFromDatabase(idEmployee);
+    }
+
     public Employee getSingleEmployee(String email) {
         return employeeRepository.selectEmployeeFromDatabaseFromEmail(email);
     }
