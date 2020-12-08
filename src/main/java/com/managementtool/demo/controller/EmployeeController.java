@@ -31,11 +31,11 @@ public class EmployeeController {
         return "createemployee";
     }
 
-    @PostMapping("/saveEmployee")
+    @PostMapping("/updateEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
 
         try {
-            employeeService.saveEmployee(employee);
+            employeeService.updateEmployee(employee);
         } catch (Exception e) {
             System.out.println("Error can't save to database " + e);
         }
@@ -46,8 +46,15 @@ public class EmployeeController {
     @PostMapping("/postCreateEmployee")
     public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response) {
 
+        Employee updateEmployee = new Employee();
+
         try {
-            String firstname = dataFromForm.getParameter("firstname");
+           if(!dataFromForm.getParameter("firstname").equals("")) {
+               String updatedFirstname = String.valueOf(dataFromForm.getParameter("firstname"));
+               updateEmployee.setFirstname(updatedFirstname);
+           }
+
+
             String lastname = dataFromForm.getParameter("lastname");
             String email = dataFromForm.getParameter("email");
             String password = dataFromForm.getParameter("password");

@@ -50,7 +50,7 @@ public class EmployeeService {
         employee = new Employee();
     }
 
-    public void saveEmployee(Employee employee) {
+    public void updateEmployee(Employee employee) {
         employeeRepository.updateEmployeeInDatabase(employee);
     }
 
