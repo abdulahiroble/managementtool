@@ -27,11 +27,10 @@ public class ProjectController {
         try {
             String projectname = dataFromForm.getParameter("projectname");
             String category = dataFromForm.getParameter("category");
-            String profesion = dataFromForm.getParameter("profesion");
 
-            Project project = new Project(projectname, category, profesion);
+            Project project = new Project(projectname, category);
 
-              // managerService.insertNewManager(manager);
+            // managerService.insertNewManager(manager);
         } catch (Exception e) {
             System.out.println("Fejl:" + e);
 

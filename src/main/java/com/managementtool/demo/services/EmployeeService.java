@@ -50,6 +50,10 @@ public class EmployeeService {
         employee = new Employee();
     }
 
+    public void saveEmployee(Employee employee) {
+        employeeRepository.updateEmployeeInDatabase(employee);
+    }
+
     public Employee employeeToDisplay() {
         return employee;
 
@@ -57,6 +61,8 @@ public class EmployeeService {
 
     public List<Employee> getEmployeelist() {
         employeeList = employeeRepository.selectAllEmployeesFromDatabase();
+
+        return employeeList;
     }
 
 }
