@@ -15,7 +15,7 @@ public class ProjectRepository {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
             preparedStatement.setString(1, project.getProjectname());
-            preparedStatement.setString(2, project.getCategory());
+           //  preparedStatement.setString(2, project.getCategory());
 
             preparedStatement.execute();
         } catch (SQLException e) {
