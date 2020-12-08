@@ -83,8 +83,6 @@ public class EmployeeRepository {
 
     public void updateEmployeeInDatabase(Employee employee) {
 
-        // Employee updateEmployee = new Employee();
-
         String updateemployeeSQL = "UPDATE employee SET firstname = ?, lastname = ?, address = ?, postal = ?, city = ?, profession = ?, rate = ? WHERE idemployee = ?";
         try {
             PreparedStatement preparedStatement = establishConnection().prepareStatement(updateemployeeSQL);

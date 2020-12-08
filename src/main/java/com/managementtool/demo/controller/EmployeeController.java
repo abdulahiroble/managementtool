@@ -35,17 +35,15 @@ public class EmployeeController {
     @PostMapping("/updateEmployee")
     public String updateEmployee(WebRequest dataFromForm, HttpServletRequest request) {
 
-        // @ModelAttribute("employee") Employee employee
-
         Employee updateEmployee = new Employee();
         try {
 
-            if(!dataFromForm.getParameter("firstname").equals("")) {
+            if (!dataFromForm.getParameter("firstname").equals("")) {
                 String updatedFirstname = String.valueOf(dataFromForm.getParameter("firstname"));
                 updateEmployee.setFirstname(updatedFirstname);
             }
 
-            employeeService.updateEmployee(employee);
+            employeeService.updateEmployee(updateEmployee);
 
         } catch (Exception e) {
             System.out.println("Error can't save to database " + e);
@@ -56,8 +54,6 @@ public class EmployeeController {
 
     @PostMapping("/postCreateEmployee")
     public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response) {
-
-
 
         try {
 
@@ -72,7 +68,8 @@ public class EmployeeController {
             String rate = dataFromForm.getParameter("rate");
             String phone = dataFromForm.getParameter("phone");
 
-           employee = new Employee(firstname, lastname, email, password, address, postal, city, profession, rate, phone);
+            employee = new Employee(firstname, lastname, email, password, address, postal, city, profession, rate,
+                    phone);
 
             employeeService.insertNewEmployee(employee);
 
@@ -85,13 +82,13 @@ public class EmployeeController {
 
     }
 
-    @GetMapping("/employeeFormToUpdate/{idemployee}")
-    public String employeeFormToUpdate(@PathVariable(value = "idemployee") int idemployee, Model model) {
+    @GetMapping("/employeeFormToView/{idemployee}")
+    public String employeeFormToView(@PathVariable(value = "idemployee") int idemployee, Model model) {
         try {
 
-            Employee employee = employeeService.getEmployeeByID(idemployee);
+            Employee employeeToView = employeeService.getEmployeeByID(idemployee);
 
-            model.addAttribute("employee", employee);
+            model.addAttribute("employeeToView", employeeToView);
         } catch (Exception e) {
             System.out.println("Error can't show employee profile " + e);
         }

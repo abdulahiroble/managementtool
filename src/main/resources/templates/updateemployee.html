@@ -7,14 +7,14 @@
 </head>
 <body>
 
-    <form class="form" action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+    <form class="form" action="/updateEmployee" method="post">
 
         <input type="hidden" th:field="*{idemployee}" />
 
         <label for="firstname">First Name:</label><br>
-        <input type="text" id="firstname" th:field="*{firstname}" name="firstname"><br><br>
+        <input type="text" id="firstname" th:value="${employeeToView.getFirstname()}" name="firstname"><br><br>
         
-        <label for="lastname">Last Name:</label><br>
+        <!-- <label for="lastname">Last Name:</label><br>
         <input type="text" id="lastname" name="lastname" th:field="*{lastname}"><br><br>
         
         <label for="email">Email</label><br>
@@ -33,7 +33,7 @@
         <input type="text" id="rate" name="rate" th:field="*{rate}"><br><br>
         
         <label for="profession">profession</label><br>
-        <input type="text" id="profession" name="profession" th:field="*{profession}"><br><br>
+        <input type="text" id="profession" name="profession" th:field="*{profession}"><br><br> -->
         
         <button type="submit" class="btn btn-info col-2">Update Employee</button>
     </form>
