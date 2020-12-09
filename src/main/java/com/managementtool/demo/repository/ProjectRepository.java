@@ -9,13 +9,12 @@ import java.util.List;
 
 public class ProjectRepository {
     public void insertProjectIntoDatabase(Project project) {
-        String insertUserSQL = "INSERT INTO project (projectname, category) VALUES (?, ?)";
+        String insertUserSQL = "INSERT INTO project (projectname) VALUES (?)";
 
         try {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
             preparedStatement.setString(1, project.getProjectname());
-            preparedStatement.setString(2, project.getCategory());
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -36,7 +35,7 @@ public class ProjectRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Project tmpProject = new Project(resultSet.getString(1), resultSet.getString(2));
+                Project tmpProject = new Project(resultSet.getString(1));
                 allProjects.add(tmpProject);
             }
 

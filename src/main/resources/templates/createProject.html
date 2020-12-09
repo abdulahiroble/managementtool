@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-</head>
-<body>
-<form action="/postCreate" method="post">
-    <label for="projectname">Project name:</label><br />
-    <input type="text" id="projectname" name="category"/><br /><br />
-
-    <label for="category">Category:</label><br />
-    <input type="text" id="category" name="category" /><br /><br />
-
-    <label for="company">Profession:</label><br />
-    <input type="text" id="company" name="company"/><br /><br />
-
-    <input type="submit" value="Create Project!" />
-</form>
-</body>
+    <title>Create Project</title>
+  </head>
+  <body>
+    <form action="/postCreateProject" method="post">
+      <label for="projectname">Project name:</label><br />
+      <input type="text" id="projectname" name="projectname" /><br /><br />
+      <input type="submit" value="Create Project!" />
+    </form>
+  </body>
 </html>

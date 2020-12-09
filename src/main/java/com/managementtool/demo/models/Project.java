@@ -2,13 +2,10 @@ package com.managementtool.demo.models;
 
 public class Project {
     private String projectname;
-    private String category;
-    private String profession;
     private int idproject;
 
-    public Project(String projectname, String category) {
+    public Project(String projectname) {
         this.projectname = projectname;
-        this.category = category;
     }
 
     public Project() {
@@ -21,22 +18,6 @@ public class Project {
 
     public void setProjectname(String projectname) {
         this.projectname = projectname;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
     }
 
     public int getIdproject() {
