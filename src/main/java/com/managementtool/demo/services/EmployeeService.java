@@ -2,9 +2,6 @@ package com.managementtool.demo.services;
 
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
 import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.repository.EmployeeRepository;
 
@@ -17,24 +14,7 @@ public class EmployeeService {
 
     public void insertNewEmployee(Employee employee) {
         employeeRepository.insertEmployeeIntoDatabase(employee);
-    }
-
-/*     public int getCookieId(HttpServletRequest request) {
-
-		Cookie cookie[] = request.getCookies();
-
-		Cookie cookieId = new Cookie("id", "");
-
-		for (Cookie cookie1 : cookie) {
-			if (cookie1.getName().equals("id")) {
-				cookieId.setValue(cookie1.getValue());
-			}
-		}
-		
-		return Integer.parseInt(cookieId.getValue());
-	} */
-
-    
+    }    
 
     public List<Employee> getAllEmployees() {
 
@@ -74,9 +54,9 @@ public class EmployeeService {
         employeeRepository.updateEmployeeInDatabase(employee);
     }
 
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(int idEmployee) {
 
-        employeeRepository.deleteEmployeeFromDatabase(id);
+        employeeRepository.deleteEmployeeFromDatabase(idEmployee);
     }
 
     public Employee employeeToDisplay() {
