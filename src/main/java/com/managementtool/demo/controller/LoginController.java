@@ -4,25 +4,32 @@ import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.services.EmployeeService;
 import com.managementtool.demo.services.ManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
+
+
 
     Manager manager = new Manager();
     ManagerService managerService = new ManagerService();
     Employee employee = new Employee();
     EmployeeService employeeService = new EmployeeService();
+
 
     @GetMapping("/createaccount")
     public String createAccount(Model managerModel) {
@@ -32,13 +39,13 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String loginAccount(Model usermModel) {
+    public String loginAccount() {
+        //Model usermModel
+       //  Manager managerToDisplay = new Manager();
 
-        Manager managerToDisplay = new Manager();
+        // usermModel.addAttribute("employeeService", employeeService);
 
-        usermModel.addAttribute("employeeService", employeeService);
-
-        usermModel.addAttribute("managerToDisplay", managerToDisplay);
+        // usermModel.addAttribute("managerToDisplay", managerToDisplay);
 
         return "login";
     }
@@ -66,7 +73,7 @@ public class LoginController {
 
     }
 
-    @PostMapping("/postLogin")
+   /* @PostMapping("/postLogin")
     public String userLogin(WebRequest dataFromForm, HttpServletResponse response) {
 
         List<Manager> managerFromDB = managerService.getAllManagersLoginInformation();
@@ -75,7 +82,7 @@ public class LoginController {
         String enteredEmail = dataFromForm.getParameter("email");
         String enteredPassword = dataFromForm.getParameter("password");
 
-        for (Manager manager : managerFromDB)
+         for (Manager manager : managerFromDB)
             if (manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword))
 
                 // manager = managerService.loggedInManager(enteredEmail, enteredPassword);
@@ -100,6 +107,6 @@ public class LoginController {
 
         return "redirect:/create";
     }
-
+*/
 
 }

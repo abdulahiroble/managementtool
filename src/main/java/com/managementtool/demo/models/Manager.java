@@ -1,6 +1,16 @@
 package com.managementtool.demo.models;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class Manager {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private String firstname;
     private String lastname;
@@ -9,6 +19,8 @@ public class Manager {
     private String password;
     private String phone;
     private int idmanager;
+    @javax.persistence.Id
+    private long id;
 
     public Manager(String firstname, String lastname, String company, String email, String password, String phone) {
         this.firstname = firstname;
@@ -85,4 +97,11 @@ public class Manager {
         this.idmanager = idmanager;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
 }
