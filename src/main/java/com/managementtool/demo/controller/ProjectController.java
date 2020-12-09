@@ -26,13 +26,13 @@ public class ProjectController {
         return "createProject";
     }
 
-    @GetMapping("/myprojects")
+    @GetMapping("/projects")
     public String showProject(Model model)
     {
-        List<Project> myproject = new ProjectService().getAllProjects();
-        model.addAttribute(" myproject",myproject);
+        List<Project> project = new ProjectService().getAllProjects();
+        model.addAttribute("project",project);
 
-        return "myprojects";
+        return "projects";
     }
 
     @PostMapping("/postCreateProject")
