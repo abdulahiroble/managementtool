@@ -2,7 +2,6 @@ package com.managementtool.demo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.managementtool.demo.models.Employee;
@@ -35,9 +34,6 @@ public class EmployeeController {
     @PostMapping("/updateEmployee")
     public String updateEmployee(@ModelAttribute("employee") Employee employee) {
 
-        // int cookieId = employeeService.getCookieId(request);
-        // Employee employeeid = employeeService.getEmployeeByID(employee);
-
         try {
             employeeService.updateEmployee(employee);
             System.out.println("Saved to db");
@@ -45,29 +41,19 @@ public class EmployeeController {
             System.out.println("Error can't update employee " + e);
         }
 
-        return "myemployees";
+        return "redirect:/myemployees";
     }
 
-/*     @PostMapping("/updateEmployee")
-    public String updateEmployee(WebRequest dataFromForm, HttpServletRequest request) {
-
-        Employee updateEmployee = new Employee();
+    @GetMapping("/deleteEmployee/{idemployee}")
+    public String deleteEmployee(@PathVariable(value = "idemployee") int idemployee) {
         try {
-
-            if (!dataFromForm.getParameter("firstname").equals("")) {
-                String updatedFirstname = String.valueOf(dataFromForm.getParameter("firstname"));
-                updateEmployee.setFirstname(updatedFirstname);
-            }
-
-            employeeService.updateEmployee(updateEmployee);
-
-            System.out.println("Saved to db");
+            employeeService.deleteEmployee(idemployee);
         } catch (Exception e) {
-            System.out.println("Error can't save to database " + e);
+            System.out.println("Error can't delete employee " + e);
         }
 
-        return "myemployees";
-    } */
+        return "redirect:/myemployees";
+    }
 
     @PostMapping("/postCreateEmployee")
     public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response) {
@@ -95,7 +81,7 @@ public class EmployeeController {
 
         }
 
-        return "myemployees";
+        return "redirect:/myemployees";
 
     }
 
