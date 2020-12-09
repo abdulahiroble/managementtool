@@ -94,6 +94,13 @@ public class EmployeeRepository {
             preparedStatement.setString(5, employee.getCity());
             preparedStatement.setString(6, employee.getProfession());
             preparedStatement.setString(7, employee.getRate());
+            preparedStatement.setInt(8, employee.getIdemployee());
+
+             System.out.println(preparedStatement.executeUpdate());
+
+             preparedStatement.executeUpdate();
+
+             preparedStatement.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

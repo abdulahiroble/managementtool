@@ -33,6 +33,22 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute("employee") Employee employee) {
+
+        // int cookieId = employeeService.getCookieId(request);
+        // Employee employeeid = employeeService.getEmployeeByID(employee);
+
+        try {
+            employeeService.updateEmployee(employee);
+            System.out.println("Saved to db");
+        } catch (Exception e) {
+            System.out.println("Error can't update employee " + e);
+        }
+
+        return "myemployees";
+    }
+
+/*     @PostMapping("/updateEmployee")
     public String updateEmployee(WebRequest dataFromForm, HttpServletRequest request) {
 
         Employee updateEmployee = new Employee();
@@ -45,20 +61,20 @@ public class EmployeeController {
 
             employeeService.updateEmployee(updateEmployee);
 
-
+            System.out.println("Saved to db");
         } catch (Exception e) {
             System.out.println("Error can't save to database " + e);
         }
 
         return "myemployees";
-    }
+    } */
 
     @PostMapping("/postCreateEmployee")
     public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response) {
 
         try {
 
-            String firstname = dataFromForm.getParameter("lastname");
+            String firstname = dataFromForm.getParameter("firstname");
             String lastname = dataFromForm.getParameter("lastname");
             String email = dataFromForm.getParameter("email");
             String password = dataFromForm.getParameter("password");
@@ -88,6 +104,7 @@ public class EmployeeController {
         try {
 
             Employee employeeToView = employeeService.getEmployeeByID(idemployee);
+
 
             model.addAttribute("employeeToView", employeeToView);
         } catch (Exception e) {

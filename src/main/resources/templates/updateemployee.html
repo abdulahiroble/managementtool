@@ -1,20 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update Employee</title>
-</head>
-<body>
+  </head>
+  <body>
+    <form
+      action="#"
+      th:action="@{/updateEmployee}"
+      th:object="${employeeToView}"
+      method="POST"
+    >
+      <input type="hidden" th:field="*{idemployee}" />
 
-    <form class="form" action="/updateEmployee" method="post">
+      <input
+        type="text"
+        id="firstname"
+        th:field="*{firstname}"
+        name="firstname"
+      /><br /><br />
+      <input
+        type="text"
+        id="lastname"
+        th:field="*{lastname}"
+        name="lastname"
+      /><br /><br />
+      <input
+        type="text"
+        id="address"
+        th:field="*{address}"
+        name="address"
+      /><br /><br />
+      <input
+        type="text"
+        id="postal"
+        th:field="*{postal}"
+        name="postal"
+      /><br /><br />
+      <input type="text" id="city" th:field="*{city}" name="city" /><br /><br />
+      <input
+        type="text"
+        id="profession"
+        th:field="*{profession}"
+        name="profession"
+      /><br /><br />
+      <input type="text" id="rate" th:field="*{rate}" name="rate" /><br /><br />
 
-        <input type="hidden" th:field="*{idemployee}" />
+      <!-- <div th:insert="Fragments/header :: header"></div> -->
 
-        <label for="firstname">First Name:</label><br>
-        <input type="text" id="firstname" th:value="${employeeToView.getFirstname()}" name="firstname"><br><br>
-        
-        <!-- <label for="lastname">Last Name:</label><br>
+      <!--     <form class="form" action="/updateEmployee" method="POST">
+      <input type="hidden" th:value="${employeeToView.getIdemployee()}" />
+      <label for="firstname">First Name:</label><br />
+      <input
+        type="text"
+        id="firstname"
+        th:value="${employeeToView.getFirstname()}"
+        name="firstname"
+      /><br /><br /> -->
+
+      <!-- <label for="lastname">Last Name:</label><br>
         <input type="text" id="lastname" name="lastname" th:field="*{lastname}"><br><br>
         
         <label for="email">Email</label><br>
@@ -34,9 +79,8 @@
         
         <label for="profession">profession</label><br>
         <input type="text" id="profession" name="profession" th:field="*{profession}"><br><br> -->
-        
-        <button type="submit" class="btn btn-info col-2">Update Employee</button>
+
+      <button type="submit" class="btn btn-info col-2">Update Employee</button>
     </form>
-    
-</body>
+  </body>
 </html>
