@@ -57,6 +57,13 @@ public class Employee {
 
     }
 
+    public Employee(int idemployee, String email, String password) {
+        this.email = email;
+        this.password = password;
+        this.idemployee = idemployee;
+
+    }
+
     public String getFirstname() {
         return firstname;
     }

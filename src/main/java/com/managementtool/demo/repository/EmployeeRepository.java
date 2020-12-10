@@ -120,9 +120,9 @@ public class EmployeeRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                employeeToReturn = new Employee(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),
-                        resultSet.getString(8), resultSet.getString(9), resultSet.getString(10));
+                employeeToReturn = new Employee(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getString(8),
+                        resultSet.getString(9), resultSet.getString(10), resultSet.getString(11));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -142,7 +142,7 @@ public class EmployeeRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Employee tmpEmployee = new Employee(resultSet.getString(3), resultSet.getString(4));
+                Employee tmpEmployee = new Employee(resultSet.getString(4), resultSet.getString(5));
                 allEmployeesLoginInformation.add(tmpEmployee);
             }
 

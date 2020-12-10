@@ -40,7 +40,7 @@ public class ManagerRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Manager tmpManager = new Manager(resultSet.getString(4), resultSet.getString(6));
+                Manager tmpManager = new Manager(resultSet.getString(4), resultSet.getString(5));
                 allManagersLoginInformation.add(tmpManager);
             }
 

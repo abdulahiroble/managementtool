@@ -70,6 +70,7 @@ public class LoginController {
     public String userLogin(WebRequest dataFromForm, HttpServletResponse response) {
 
         List<Manager> managerFromDB = managerService.getAllManagersLoginInformation();
+        List<Employee> employeeFromDB = employeeService.getAllEmployeesLoginInformation();
 
         String enteredEmail = dataFromForm.getParameter("email");
         String enteredPassword = dataFromForm.getParameter("password");
@@ -87,18 +88,20 @@ public class LoginController {
             return "redirect:/myemployees";
             }
 
+        for (Employee employee : employeeFromDB)
+            if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
+
+                employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
+                String id = "" + employeeService.getSingleEmployee(dataFromForm.getParameter("email")).getIdemployee();
+                Cookie cookie = new Cookie("id", id);
+                response.addCookie(cookie);
+
+                return "redirect:/mytasks";
+            }
+
             return "redirect:/create";
 
-                           /*  for (Employee employee : employeeFromDB)
-                if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
-    
-                    employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
-                    String id2 = "" + employeeService.getSingleEmployee(dataFromForm.getParameter("email")).getIdemployee();
-                    Cookie cookie2 = new Cookie("id2", id2);
-                    response.addCookie(cookie2);
-    
-                    return "redirect:/mytasks";
-                } */
+
     }
 
 
