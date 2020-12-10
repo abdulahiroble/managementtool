@@ -34,17 +34,25 @@ public class ProjectController {
     }
 
     @GetMapping("/projects")
-    public String showProject(Model model)
+    public String showProject(Model model, HttpServletRequest request)
     {
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("project", activeManager);
 
         List<Project> project = new ProjectService().getAllProjects();
-        model.addAttribute("project",project);
 
         return "projects";
     }
 
     @PostMapping("/postCreateProject")
-    public String postCreate(WebRequest dataFromForm, HttpServletResponse response) {
+    public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("project", activeManager);
 
         try {
             String projectname = dataFromForm.getParameter("projectname");

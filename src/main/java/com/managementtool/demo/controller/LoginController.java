@@ -85,16 +85,16 @@ public class LoginController {
                  response.addCookie(cookie);
 
 
-            return "redirect:/myemployees";
+            return "redirect:/projects";
             }
 
         for (Employee employee : employeeFromDB)
             if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
 
-                employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
+                /* employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
                 String id = "" + employeeService.getSingleEmployee(dataFromForm.getParameter("email")).getIdemployee();
                 Cookie cookie = new Cookie("id", id);
-                response.addCookie(cookie);
+                response.addCookie(cookie); */
 
                 return "redirect:/mytasks";
             }
