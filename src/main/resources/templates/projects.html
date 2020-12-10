@@ -6,14 +6,5 @@
   </head>
   <body>
     <h1>My project</h1>
-
-    <div th:each="myprojects : ${project}">
-      <input
-        type="text"
-        id="projectname"
-        th:field="myprojects.getProjectname"
-        name="projectname"
-      /><br /><br />
-    </div>
   </body>
 </html>

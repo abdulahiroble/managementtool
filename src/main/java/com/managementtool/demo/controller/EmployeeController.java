@@ -2,10 +2,13 @@ package com.managementtool.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.services.EmployeeService;
+import com.managementtool.demo.services.ManagerService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +23,16 @@ public class EmployeeController {
     Employee employee = new Employee();
     EmployeeService employeeService = new EmployeeService();
     List<Employee> listEmployee;
+    ManagerService managerService = new ManagerService();
 
     @GetMapping("/myemployees")
-    public String myEmployees(Model model) {
+    public String myEmployees(Model model, HttpServletRequest request) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
+
         return showEmployeeList(model);
     }
 
