@@ -33,7 +33,7 @@ public class EmployeeController {
 
         model.addAttribute("employee", activeManager);
 
-        return showEmployeeList(model);
+        return showEmployeeList(model, request);
     }
 
     @GetMapping("/createemployee")
@@ -42,7 +42,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmployee")
-    public String updateEmployee(@ModelAttribute("employee") Employee employee) {
+    public String updateEmployee(@ModelAttribute("employee") Employee employee, HttpServletRequest request, Model model) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
 
         try {
             employeeService.updateEmployee(employee);
@@ -55,7 +60,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/deleteEmployee/{idemployee}")
-    public String deleteEmployee(@PathVariable(value = "idemployee") int idemployee) {
+    public String deleteEmployee(@PathVariable(value = "idemployee") int idemployee, HttpServletRequest request, Model model) {
+        
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
+
         try {
             employeeService.deleteEmployee(idemployee);
         } catch (Exception e) {
@@ -66,7 +77,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/postCreateEmployee")
-    public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response) {
+    public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response, HttpServletRequest request, Model model) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
 
         try {
 
@@ -96,7 +112,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/employeeFormToView/{idemployee}")
-    public String employeeFormToView(@PathVariable(value = "idemployee") int idemployee, Model model) {
+    public String employeeFormToView(@PathVariable(value = "idemployee") int idemployee, Model model, HttpServletResponse response, HttpServletRequest request) {
+        
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
+        
         try {
 
             Employee employeeToView = employeeService.getEmployeeByID(idemployee);
@@ -109,7 +131,12 @@ public class EmployeeController {
         return "updateemployee";
     }
 
-    public String showEmployeeList(Model model) {
+    public String showEmployeeList(Model model, HttpServletRequest request) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
 
         try {
 
