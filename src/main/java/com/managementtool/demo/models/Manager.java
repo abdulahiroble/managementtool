@@ -20,8 +20,25 @@ public class Manager {
 
     }
 
+    public Manager(int idmanger, String firstname, String lastname, String company, String email, String password, String phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.company = company;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.idmanager = idmanger;
+
+    }
+
     public Manager() {
 
+    }
+
+    public Manager(int idmanager, String email, String password) {
+        this.idmanager = idmanager;
+        this.email = email;
+        this.password = password;
     }
 
     public Manager(String email, String password) {

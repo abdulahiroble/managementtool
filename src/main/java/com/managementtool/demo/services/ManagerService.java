@@ -9,6 +9,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.AsyncContext;
+import javax.servlet.Servlet;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 public class ManagerService {
 
     ManagerRepository managerRepository = new ManagerRepository();
@@ -18,6 +36,27 @@ public class ManagerService {
     public void insertNewManager(Manager manager) {
         managerRepository.insertUserIntoDatabase(manager);
     }
+
+    public int getCookieId(HttpServletRequest request) {
+
+		Cookie cookie[] = request.getCookies();
+
+		Cookie cookieId = new Cookie("id", "");
+
+		for (Cookie cookie1 : cookie) {
+			if (cookie1.getName().equals("id")) {
+				cookieId.setValue(cookie1.getValue());
+			}
+		}
+		
+		return Integer.parseInt(cookieId.getValue());
+    }
+    
+    public Manager getManagerByID(int idmanager)
+    {
+        return managerRepository.selectManagerFromDatabase(idmanager);
+    }
+
 
     public List<Manager> getAllManagersLoginInformation() {
         return managerRepository.selectAllManagersLoginInformationFromDatabase();

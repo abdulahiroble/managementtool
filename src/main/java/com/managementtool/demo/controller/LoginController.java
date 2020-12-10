@@ -70,35 +70,35 @@ public class LoginController {
     public String userLogin(WebRequest dataFromForm, HttpServletResponse response) {
 
         List<Manager> managerFromDB = managerService.getAllManagersLoginInformation();
-        List<Employee> employeeFromDB = employeeService.getAllEmployeesLoginInformation();
 
         String enteredEmail = dataFromForm.getParameter("email");
         String enteredPassword = dataFromForm.getParameter("password");
 
         for (Manager manager : managerFromDB)
-            if (manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword))
-
-                // manager = managerService.loggedInManager(enteredEmail, enteredPassword);
-                // String id1 = "" + managerService.getSingleManager(dataFromForm.getParameter("email")).getIdmanager();
-                // Cookie cookie1 = new Cookie("id1", id1);
-                // response.addCookie(cookie1);
-
-
-        return "redirect:/projects";
+            if (manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword)) {
+                manager = managerService.loggedInManager(enteredEmail, enteredPassword);
+                 
+                String id = "" + managerService.getSingleManager(dataFromForm.getParameter("email")).getIdmanager();
+                
+                Cookie cookie = new Cookie("id", id);
+                 response.addCookie(cookie);
 
 
-        for (Employee employee : employeeFromDB)
-            if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
-
-                employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
-                String id2 = "" + employeeService.getSingleEmployee(dataFromForm.getParameter("email")).getIdemployee();
-                Cookie cookie2 = new Cookie("id2", id2);
-                response.addCookie(cookie2);
-
-                return "redirect:/mytask";
+            return "redirect:/myemployees";
             }
 
-        return "redirect:/create";
+            return "redirect:/create";
+
+                           /*  for (Employee employee : employeeFromDB)
+                if (employee.getEmail().equals(enteredEmail) && employee.getPassword().equals(enteredPassword)) {
+    
+                    employee = employeeService.loggedInEmployee(enteredEmail, enteredPassword);
+                    String id2 = "" + employeeService.getSingleEmployee(dataFromForm.getParameter("email")).getIdemployee();
+                    Cookie cookie2 = new Cookie("id2", id2);
+                    response.addCookie(cookie2);
+    
+                    return "redirect:/mytasks";
+                } */
     }
 
 

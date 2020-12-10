@@ -56,7 +56,7 @@ public class ManagerRepository {
 
         Manager managerToReturn = new Manager();
 
-        String selectManager = "SELECT * FROM employee WHERE email = ?";
+        String selectManager = "SELECT * FROM manager WHERE email = ?";
 
         try {
             PreparedStatement preparedStatement = establishConnection().prepareStatement(selectManager);
@@ -64,14 +64,17 @@ public class ManagerRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            System.out.println(preparedStatement.executeQuery());
+
             while (resultSet.next()) {
                 managerToReturn = new Manager(
-                        resultSet.getString(1),
+                        resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getString(6)
+                        resultSet.getString(6),
+                        resultSet.getString(7)
 
                 );
             }
@@ -108,6 +111,36 @@ public class ManagerRepository {
         }
         return allManagers;
     }
+
+    public Manager selectManagerFromDatabase(int idmanager) {
+
+        Manager managerToReturn = new Manager();
+
+        String selectManager = "SELECT * FROM manager WHERE idmanager = ?";
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectManager);
+            preparedStatement.setInt(1, idmanager);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                managerToReturn = new Manager(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7)
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return managerToReturn;
+    }
+
 
 
     public Connection establishConnection() throws SQLException {
