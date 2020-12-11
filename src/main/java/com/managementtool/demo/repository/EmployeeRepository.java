@@ -11,15 +11,10 @@ import java.util.List;
 
 public class EmployeeRepository {
 
-    ManagerService managerService = new ManagerService();
-    public void insertEmployeeIntoDatabase(Employee employee, Manager manager, int currentManagerId, HttpServletRequest request) {
-        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone, manager_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) FOREIGN KEY =  currentManagerId";
+    public void insertEmployeeIntoDatabase(Employee employee, int currentManagerById, Manager manager) {
+        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone, manager_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-
-            int cookieId = managerService.getCookieId(request);
-            Manager activeManager = managerService.getManagerByID(cookieId);
-
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
             preparedStatement.setString(1, employee.getFirstname());
@@ -32,7 +27,9 @@ public class EmployeeRepository {
             preparedStatement.setString(8, employee.getProfession());
             preparedStatement.setString(9, employee.getRate());
             preparedStatement.setString(10, employee.getPhone());
-            preparedStatement.setInt(11, manager.getIdmanager(activeManager));
+            preparedStatement.setInt(11, manager.getIdmanager());
+            // preparedStatement.setInt(11, manager.getIdmanager(cookieId));
+            
 
             preparedStatement.execute();
         } catch (SQLException e) {

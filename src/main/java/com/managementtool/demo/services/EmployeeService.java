@@ -3,6 +3,7 @@ package com.managementtool.demo.services;
 import java.util.List;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.repository.EmployeeRepository;
 
 public class EmployeeService {
@@ -12,8 +13,8 @@ public class EmployeeService {
     Employee employee = new Employee();
     public List<Employee> employeeList;
 
-    public void insertNewEmployee(Employee employee) {
-        employeeRepository.insertEmployeeIntoDatabase(employee);
+    public void insertNewEmployee(Employee employee, int currentManagerById, Manager manager) {
+        employeeRepository.insertEmployeeIntoDatabase(employee, currentManagerById, manager);
     }    
 
     public List<Employee> getAllEmployees() {

@@ -24,6 +24,7 @@ public class EmployeeController {
     EmployeeService employeeService = new EmployeeService();
     List<Employee> listEmployee;
     ManagerService managerService = new ManagerService();
+    Manager manager = new Manager();
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {
@@ -60,10 +61,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/deleteEmployee/{idemployee}")
-    public String deleteEmployee(@PathVariable(value = "idemployee") int idemployee, HttpServletRequest request, Model model) {
+    public String deleteEmployee(@PathVariable(value = "idemployee") int idemployee, HttpServletRequest request, Model model, int idmanager) {
         
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
+
+        Manager currentManagerId = managerService.getManagerByID(idmanager);
 
         model.addAttribute("employee", activeManager);
 
@@ -77,10 +80,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/postCreateEmployee")
-    public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response, HttpServletRequest request, Model model) {
+    public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response, HttpServletRequest request, Model model, int idmanager) {
 
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
+
+        int currentManagerById = manager.getIdmanager();
 
         model.addAttribute("employee", activeManager);
 
@@ -97,10 +102,12 @@ public class EmployeeController {
             String rate = dataFromForm.getParameter("rate");
             String phone = dataFromForm.getParameter("phone");
 
-            employee = new Employee(firstname, lastname, email, password, address, postal, city, profession, rate,
-                    phone);
+            
+            employee = new Employee(firstname, lastname, email, password, address, postal, city, profession, rate, phone);
 
-            employeeService.insertNewEmployee(employee);
+            manager = new Manager(idmanager);
+
+            employeeService.insertNewEmployee(employee, currentManagerById, manager);
 
         } catch (Exception e) {
             System.out.println("Fejl:" + e);
