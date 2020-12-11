@@ -66,7 +66,7 @@ public class EmployeeController {
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
 
-        Manager currentManagerId = managerService.getManagerByID(idmanager);
+        // Manager currentManagerId = managerService.getManagerByID(idmanager);
 
         model.addAttribute("employee", activeManager);
 
@@ -85,7 +85,7 @@ public class EmployeeController {
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
 
-        int currentManagerById = manager.getIdmanager();
+        Manager currentIdManager = managerService.getManagerByID(idmanager);
 
         model.addAttribute("employee", activeManager);
 
@@ -102,12 +102,12 @@ public class EmployeeController {
             String rate = dataFromForm.getParameter("rate");
             String phone = dataFromForm.getParameter("phone");
 
+            // String idmanager = dataFromForm.getParameter("idmanager");
+
             
             employee = new Employee(firstname, lastname, email, password, address, postal, city, profession, rate, phone);
 
-            manager = new Manager(idmanager);
-
-            employeeService.insertNewEmployee(employee, currentManagerById, manager);
+            employeeService.insertNewEmployee(employee, currentIdManager);
 
         } catch (Exception e) {
             System.out.println("Fejl:" + e);
@@ -119,7 +119,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employeeFormToView/{idemployee}")
-    public String employeeFormToView(@PathVariable(value = "idemployee") int idemployee, Model model, HttpServletResponse response, HttpServletRequest request) {
+    public String employeeFormToView(@PathVariable(value = "idemployee") Model model, HttpServletResponse response, HttpServletRequest request, int idemployee) {
         
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);

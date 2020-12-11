@@ -13,8 +13,8 @@ public class EmployeeService {
     Employee employee = new Employee();
     public List<Employee> employeeList;
 
-    public void insertNewEmployee(Employee employee, int currentManagerById, Manager manager) {
-        employeeRepository.insertEmployeeIntoDatabase(employee, currentManagerById, manager);
+    public void insertNewEmployee(Employee employee, int idmanager) {
+        employeeRepository.insertEmployeeIntoDatabase(employee, idmanager);
     }    
 
     public List<Employee> getAllEmployees() {

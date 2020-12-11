@@ -12,18 +12,6 @@ public class Employee {
     private String rate;
     private String phone;
     private int idemployee;
-    private int idmanager;
-    
-
-    public int getIdmanager() {
-        return idmanager;
-    }
-
-    public void setIdmanager(int idmanager) {
-        this.idmanager = idmanager;
-    }
-
-
 
     public Employee(String firstname, String lastname, String email, String password, String address, String postal,
             String city, String profession, String rate, String phone) {
