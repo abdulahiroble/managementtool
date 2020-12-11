@@ -2,15 +2,19 @@ package com.managementtool.demo.repository;
 
 import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.services.ManagerService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository {
 
-    public void insertEmployeeIntoDatabase(Employee employee) {
-        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void insertEmployeeIntoDatabase(Employee employee, int idmanager) {
+        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone, manager_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        ManagerService managerService = new ManagerService();
 
         try {
 
@@ -24,7 +28,8 @@ public class EmployeeRepository {
             preparedStatement.setString(7, employee.getCity());
             preparedStatement.setString(8, employee.getProfession());
             preparedStatement.setString(9, employee.getRate());
-            preparedStatement.setString(10, employee.getPhone());
+            preparedStatement.setString(10, employee.getPhone());            
+            preparedStatement.setInt(11, idmanager);
 
             preparedStatement.execute();
         } catch (SQLException e) {

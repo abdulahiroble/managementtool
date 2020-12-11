@@ -20,6 +20,10 @@ public class Manager {
 
     }
 
+    public Manager(int idmanager) {
+        this.idmanager = idmanager;
+    }
+
     public Manager(int idmanger, String firstname, String lastname, String company, String email, String password, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
