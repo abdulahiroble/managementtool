@@ -2,17 +2,24 @@ package com.managementtool.demo.repository;
 
 import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.services.ManagerService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository {
 
-    public void insertEmployeeIntoDatabase(Employee employee) {
-        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    ManagerService managerService = new ManagerService();
+    public void insertEmployeeIntoDatabase(Employee employee, Manager manager, int currentManagerId, HttpServletRequest request) {
+        String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone, manager_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) FOREIGN KEY =  currentManagerId";
 
         try {
+
+            int cookieId = managerService.getCookieId(request);
+            Manager activeManager = managerService.getManagerByID(cookieId);
+
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
             preparedStatement.setString(1, employee.getFirstname());
@@ -25,6 +32,7 @@ public class EmployeeRepository {
             preparedStatement.setString(8, employee.getProfession());
             preparedStatement.setString(9, employee.getRate());
             preparedStatement.setString(10, employee.getPhone());
+            preparedStatement.setInt(11, manager.getIdmanager(activeManager));
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -34,7 +42,7 @@ public class EmployeeRepository {
 
     public List<Employee> selectAllEmployeesFromDatabase() {
 
-        String selectAllEmployees = "SELECT * FROM employee";
+        String selectAllEmployees = "SELECT * FROM employee INNER JOIN manager WHERE  manager.id = ?";
 
         List<Employee> allEmployees = new ArrayList<>();
 

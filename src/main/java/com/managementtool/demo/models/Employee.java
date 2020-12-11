@@ -13,6 +13,16 @@ public class Employee {
     private String phone;
     private int idemployee;
 
+    public int getIdmanager() {
+        return idmanager;
+    }
+
+    public void setIdmanager(int idmanager) {
+        this.idmanager = idmanager;
+    }
+
+    private int idmanager;
+
     public Employee(String firstname, String lastname, String email, String password, String address, String postal,
             String city, String profession, String rate, String phone) {
         this.firstname = firstname;
