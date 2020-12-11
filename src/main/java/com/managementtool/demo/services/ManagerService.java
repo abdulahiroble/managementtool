@@ -32,6 +32,7 @@ public class ManagerService {
     ManagerRepository managerRepository = new ManagerRepository();
     public List<Manager> allManagers = managerRepository.selectAllManagersFromDatabase();
     Manager manager = new Manager();
+    ManagerService managerService = new ManagerService();
 
     public void insertNewManager(Manager manager) {
         managerRepository.insertUserIntoDatabase(manager);
