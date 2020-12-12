@@ -102,7 +102,7 @@ public class EmployeeController {
                     phone);
 
             employeeService.insertNewEmployee(employee);
-            // employeeService.insertManagerId(employee);
+            employeeService.insertManagerId(employee);
 
         } catch (Exception e) {
             System.out.println("Fejl:" + e);

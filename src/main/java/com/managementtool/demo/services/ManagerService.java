@@ -54,7 +54,7 @@ public class ManagerService {
     
     public Manager getManagerByID(int idmanager)
     {
-        return managerRepository.selectManagerFromDatabase(idmanager);
+        return managerRepository.selectManagerFromDatabaseBasedOnId(idmanager);
     }
 
 

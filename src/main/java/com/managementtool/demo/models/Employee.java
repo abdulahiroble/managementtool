@@ -32,13 +32,13 @@ public class Employee {
 
     }
 
-/*     public Employee(int managerid) {
+    public Employee(int managerid) {
         this.managerId = managerid;
-    } */
+    }
 
-/*     public Employee(String firstname) {
+    public Employee(String firstname) {
         this.firstname = firstname;
-    } */
+    }
 
    public Employee(int idemployee, String firstname, String lastname, String email, String password, String address,
             String postal, String city, String profession, String rate, String phone) {

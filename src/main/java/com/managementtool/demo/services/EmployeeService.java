@@ -16,9 +16,9 @@ public class EmployeeService {
         employeeRepository.insertEmployeeIntoDatabase(employee);
     }    
 
-    /* public void insertManagerId(Employee employee) {
+     public void insertManagerId(Employee employee) {
         employeeRepository.insertManagerIdToEmployeeManagerId(employee);
-    }  */   
+    }     
 
     public List<Employee> getAllEmployees() {
 

@@ -32,7 +32,7 @@ public class EmployeeRepository {
         }
     }
 
-/*     public void insertManagerIdToEmployeeManagerId(Employee employee) {
+    public void insertManagerIdToEmployeeManagerId(Employee employee) {
         String insertUserSQL = "UPDATE employee, manager SET manager_id = idmanager";
 
         try {
@@ -44,7 +44,7 @@ public class EmployeeRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    } */
+    }
 
     public List<Employee> selectAllEmployeesFromDatabase() {
 

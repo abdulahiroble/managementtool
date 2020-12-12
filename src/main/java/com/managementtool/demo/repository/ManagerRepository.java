@@ -112,7 +112,7 @@ public class ManagerRepository {
         return allManagers;
     }
 
-    public Manager selectManagerFromDatabase(int idmanager) {
+    public Manager selectManagerFromDatabaseBasedOnId(int idmanager) {
 
         Manager managerToReturn = new Manager();
 

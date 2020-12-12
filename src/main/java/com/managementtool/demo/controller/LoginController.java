@@ -56,6 +56,11 @@ public class LoginController {
 
             manager = new Manager(firstname, lastname, company, email, password, phone);
 
+
+            /* String id = "" + managerService.getSingleManager(dataFromForm.getParameter("email")).getIdmanager();
+            Cookie cookie = new Cookie("id", id);
+            response.addCookie(cookie); */
+
             managerService.insertNewManager(manager);
         } catch (Exception e) {
             System.out.println("Fejl:" + e);
