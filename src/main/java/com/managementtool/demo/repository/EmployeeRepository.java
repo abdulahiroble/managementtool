@@ -32,6 +32,20 @@ public class EmployeeRepository {
         }
     }
 
+/*     public void insertManagerIdToEmployeeManagerId(Employee employee) {
+        String insertUserSQL = "UPDATE employee, manager SET manager_id = idmanager";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+            // preparedStatement.setInt(1, employee.getManagerId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    } */
+
     public List<Employee> selectAllEmployeesFromDatabase() {
 
         String selectAllEmployees = "SELECT * FROM employee";

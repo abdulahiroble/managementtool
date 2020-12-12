@@ -24,6 +24,7 @@ public class EmployeeController {
     EmployeeService employeeService = new EmployeeService();
     List<Employee> listEmployee;
     ManagerService managerService = new ManagerService();
+    Manager manager = new Manager();
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {
@@ -101,6 +102,7 @@ public class EmployeeController {
                     phone);
 
             employeeService.insertNewEmployee(employee);
+            // employeeService.insertManagerId(employee);
 
         } catch (Exception e) {
             System.out.println("Fejl:" + e);

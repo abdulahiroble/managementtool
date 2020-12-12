@@ -12,6 +12,7 @@ public class Employee {
     private String rate;
     private String phone;
     private int idemployee;
+    private int managerId;
 
     public Employee(String firstname, String lastname, String email, String password, String address, String postal,
             String city, String profession, String rate, String phone) {
@@ -30,6 +31,10 @@ public class Employee {
     public Employee() {
 
     }
+
+/*     public Employee(int managerid) {
+        this.managerId = managerid;
+    } */
 
 /*     public Employee(String firstname) {
         this.firstname = firstname;
@@ -86,6 +91,14 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(int managerId) {
+        this.managerId = managerId;
     }
 
     public String getPassword() {
