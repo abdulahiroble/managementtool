@@ -32,8 +32,8 @@ public class Employee {
 
     }
 
-    public Employee(int managerid) {
-        this.managerId = managerid;
+    public Employee(int managerId) {
+        this.managerId = managerId;
     }
 
     public Employee(String firstname) {
