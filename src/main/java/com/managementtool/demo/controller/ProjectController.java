@@ -41,7 +41,7 @@ public class ProjectController {
 
         model.addAttribute("project", activeManager);
 
-        List<Project> project = new ProjectService().getAllProjects();
+        // List<Project> project = new ProjectService().getAllProjects();
 
         return "projects";
     }
@@ -58,6 +58,8 @@ public class ProjectController {
             String projectname = dataFromForm.getParameter("projectname");
 
             Project project = new Project(projectname);
+
+            projectService.insertManagerId(project);
 
              projectService.insertNewProject(project);
         } catch (Exception e) {

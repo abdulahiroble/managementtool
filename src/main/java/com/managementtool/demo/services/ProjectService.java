@@ -9,6 +9,9 @@ import java.util.List;
 public class ProjectService {
     ProjectRepository projectRepository = new ProjectRepository();
 
+    public void insertManagerId(Project project) {
+        projectRepository.insertManagerIdToProjectManagerId(project);
+    }     
 
     public List<Project> getAllProjects() {
 
