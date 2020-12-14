@@ -41,7 +41,9 @@ public class ProjectController {
 
         model.addAttribute("project", activeManager);
 
-        // List<Project> project = new ProjectService().getAllProjects();
+        List<Project> projectName = new ProjectService().getAllProjects();
+
+        model.addAttribute("projectName", projectName);
 
         return "projects";
     }

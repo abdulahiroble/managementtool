@@ -38,7 +38,7 @@ public class ProjectRepository {
 
     public List<Project> selectAllProjectsFromDatabase() {
 
-        String selectAllProjects = "SELECT * FROM project";
+        String selectAllProjects = "SELECT (projectname) FROM project WHERE managerid = idproject";
 
         List<Project> allProjects = new ArrayList<>();
 

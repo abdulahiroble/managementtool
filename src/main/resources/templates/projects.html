@@ -33,7 +33,9 @@
           </g></svg
       ></a>
     </div>
-    <h4>Byg badevælse</h4>
+    <div th:each="project : ${projectName}">
+      <h3 th:text="${project.getProjectname()}"></h3>
+    </div>
     <h6 style="font-style: italic">VVS</h6>
   </body>
 </html>
