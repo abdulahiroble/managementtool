@@ -41,10 +41,10 @@ public class ManagerService {
 
 		Cookie cookie[] = request.getCookies();
 
-		Cookie cookieId = new Cookie("id", "");
+		Cookie cookieId = new Cookie("idmanager", "");
 
 		for (Cookie cookie1 : cookie) {
-			if (cookie1.getName().equals("id")) {
+			if (cookie1.getName().equals("idmanager")) {
 				cookieId.setValue(cookie1.getValue());
 			}
 		}
@@ -54,7 +54,7 @@ public class ManagerService {
     
     public Manager getManagerByID(int idmanager)
     {
-        return managerRepository.selectManagerFromDatabase(idmanager);
+        return managerRepository.selectManagerFromDatabaseBasedOnId(idmanager);
     }
 
 

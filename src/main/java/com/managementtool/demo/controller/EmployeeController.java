@@ -2,6 +2,7 @@ package com.managementtool.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +25,8 @@ public class EmployeeController {
     EmployeeService employeeService = new EmployeeService();
     List<Employee> listEmployee;
     ManagerService managerService = new ManagerService();
+    Manager manager = new Manager();
+    Cookie cookie;
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {
@@ -101,6 +104,9 @@ public class EmployeeController {
                     phone);
 
             employeeService.insertNewEmployee(employee);
+            employeeService.insertManagerId(employee);
+
+            // response.addCookie(cookie);
 
         } catch (Exception e) {
             System.out.println("Fejl:" + e);

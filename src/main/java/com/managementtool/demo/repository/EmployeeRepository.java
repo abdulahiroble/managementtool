@@ -25,6 +25,21 @@ public class EmployeeRepository {
             preparedStatement.setString(8, employee.getProfession());
             preparedStatement.setString(9, employee.getRate());
             preparedStatement.setString(10, employee.getPhone());
+            // preparedStatement.setInt(11, employee.getManagerId());
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void insertManagerIdToEmployeeManagerId(Employee employee) {
+        String insertUserSQL = "UPDATE employee, manager SET managerid = idmanager";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+            // preparedStatement.setInt(1, employee.getManagerId());
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -34,7 +49,7 @@ public class EmployeeRepository {
 
     public List<Employee> selectAllEmployeesFromDatabase() {
 
-        String selectAllEmployees = "SELECT * FROM employee";
+        String selectAllEmployees = "SELECT * FROM employee WHERE managerid = 1";
 
         List<Employee> allEmployees = new ArrayList<>();
 
