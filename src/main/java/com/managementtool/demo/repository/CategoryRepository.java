@@ -38,7 +38,7 @@ public class CategoryRepository {
 
     public List<Category> selectAllCategorysFromDatabase() {
 
-        String selectAllCategory = "SELECT (categoryname) FROM category";
+        String selectAllCategory = "SELECT (categoryname) FROM category INNER JOIN project ON idproject = projectid WHERE idcategory = 1";
 
         List<Category> allCategory = new ArrayList<>();
 
