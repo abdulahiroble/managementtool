@@ -51,7 +51,7 @@ public class TaskController {
 
                Task task = new Task(taskname, time, cost, deadline);
 
-              // taskService.insertManagerId(task);
+              // taskService.insertCategoryId(task);
 
                taskService.insertNewTask(task);
          } catch (Exception e) {
