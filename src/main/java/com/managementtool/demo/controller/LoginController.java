@@ -87,7 +87,7 @@ public class LoginController {
                 response.addCookie(cookie);
 
 
-            return "redirect:/myemployees";
+            return "redirect:/projects";
             }
 
         for (Employee employee : employeeFromDB)

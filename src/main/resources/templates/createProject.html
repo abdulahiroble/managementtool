@@ -10,8 +10,13 @@
       <h2>Give your project a name</h2>
       <form action="/postCreateProject" method="post">
         <label for="projectname">Project name:</label><br /><br />
-        <input type="text" id="projectname" name="projectname" /><br /><br />
-        <input type="submit" value="Create Project!" />
+        <input
+          type="text"
+          id="projectname"
+          name="projectname"
+          required
+        /><br /><br />
+        <input type="submit" value="Next" />
       </form>
     </div>
   </body>

@@ -38,7 +38,7 @@ public class ProjectRepository {
 
     public List<Project> selectAllProjectsFromDatabase() {
 
-        String selectAllProjects = "SELECT (projectname) FROM project WHERE managerid = idproject";
+        String selectAllProjects = "SELECT (projectname) FROM project INNER JOIN manager ON idmanager = managerid WHERE idproject = 1";
 
         List<Project> allProjects = new ArrayList<>();
 

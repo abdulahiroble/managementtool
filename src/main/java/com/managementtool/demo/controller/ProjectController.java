@@ -1,7 +1,9 @@
 package com.managementtool.demo.controller;
 
+import com.managementtool.demo.models.Category;
 import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.models.Project;
+import com.managementtool.demo.services.CategoryService;
 import com.managementtool.demo.services.ManagerService;
 import com.managementtool.demo.services.ProjectService;
 
@@ -21,6 +23,8 @@ public class ProjectController {
     Project project = new Project();
     ProjectService projectService = new ProjectService();
     ManagerService managerService = new ManagerService();
+    Category category = new Category();
+    CategoryService categoryService = new CategoryService();
 
     @GetMapping("/createProject")
     public String createProject(Model projectModel, HttpServletRequest request) {
@@ -43,6 +47,14 @@ public class ProjectController {
 
         List<Project> projectName = new ProjectService().getAllProjects();
 
+        List<Category> categoryName = new CategoryService().getAllCategorys();
+
+        categoryService.insertProjectIdToCategory(category);
+        
+        model.addAttribute("categoryName", categoryName);
+
+        projectService.insertManagerId(project);
+
         model.addAttribute("projectName", projectName);
 
         return "projects";
@@ -61,7 +73,7 @@ public class ProjectController {
 
             Project project = new Project(projectname);
 
-            projectService.insertManagerId(project);
+            // projectService.insertManagerId(project);
 
              projectService.insertNewProject(project);
         } catch (Exception e) {
@@ -69,6 +81,6 @@ public class ProjectController {
 
         }
 
-        return "redirect:/projects";
+        return "redirect:/addcategory";
     }
 }

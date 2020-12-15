@@ -36,6 +36,11 @@
     <div th:each="project : ${projectName}">
       <h3 th:text="${project.getProjectname()}"></h3>
     </div>
-    <h6 style="font-style: italic">VVS</h6>
+    <div th:each="category : ${categoryName}">
+      <h6
+        style="font-style: italic"
+        th:text="${category.getCategoryname()}"
+      ></h6>
+    </div>
   </body>
 </html>

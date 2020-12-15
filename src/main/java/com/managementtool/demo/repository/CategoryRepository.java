@@ -3,6 +3,8 @@ package com.managementtool.demo.repository;
 import com.managementtool.demo.models.Category;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryRepository {
 
@@ -19,6 +21,41 @@ public class CategoryRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void insertProjectIdToCategoryDatabase(Category category) {
+        String insertUserSQL = "UPDATE category, project SET projectid = idproject";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public List<Category> selectAllCategorysFromDatabase() {
+
+        String selectAllCategory = "SELECT (categoryname) FROM category";
+
+        List<Category> allCategory = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectAllCategory);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Category tmpProject = new Category(resultSet.getString(1));
+                allCategory.add(tmpProject);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return allCategory;
     }
 
     public Category selectCategoryFromDatabase(int idCategory) {
