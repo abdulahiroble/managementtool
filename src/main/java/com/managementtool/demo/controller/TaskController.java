@@ -8,7 +8,6 @@ import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.models.Project;
 import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.ManagerService;
-import com.managementtool.demo.services.ProjectService;
 import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class TaskController {
     ManagerService managerService = new ManagerService();
+    TaskService taskService = new TaskService();
     
     @GetMapping("/createtask")
     public String createProject(Model projectModel, HttpServletRequest request) {
@@ -32,28 +32,34 @@ public class TaskController {
         return "createtask";
     }
 
-    @PostMapping("/postCreateProject")
-    public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
+     @PostMapping("/postCreateTask")
+     public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
 
-        int cookieId = managerService.getCookieId(request);
-        Manager activeManager = managerService.getManagerByID(cookieId);
+          int cookieId = managerService.getCookieId(request);
+          Manager activeManager = managerService.getManagerByID(cookieId);
 
-        model.addAttribute("project", activeManager);
+          model.addAttribute("project", activeManager);
 
-        try {
-            // String projectname = dataFromForm.getParameter("projectname");
+         try {
+               String taskname = dataFromForm.getParameter("taskname");
 
-            // Project project = new Project(projectname);
+               String time = dataFromForm.getParameter("time");
 
-            // projectService.insertManagerId(project);
+               String cost = dataFromForm.getParameter("cost");
 
-             // projectService.insertNewProject(project);
-        } catch (Exception e) {
-            System.out.println("Fejl:" + e);
+               String deadline = dataFromForm.getParameter("deadline");
 
-        }
+               Task task = new Task(taskname, time, cost, deadline);
 
-        return "redirect:/projects";
-    }
+              // taskService.insertManagerId(task);
+
+               taskService.insertNewTask(task);
+         } catch (Exception e) {
+             System.out.println("Fejl:" + e);
+
+         }
+
+         return "redirect:/projects";
+     }
     
 }
