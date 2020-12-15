@@ -20,6 +20,7 @@ import org.springframework.web.context.request.WebRequest;
 public class TaskController {
     ManagerService managerService = new ManagerService();
     TaskService taskService = new TaskService();
+    Task task = new Task();
     
     @GetMapping("/createtask")
     public String createProject(Model projectModel, HttpServletRequest request) {

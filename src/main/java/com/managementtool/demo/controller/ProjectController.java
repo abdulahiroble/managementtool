@@ -3,9 +3,11 @@ package com.managementtool.demo.controller;
 import com.managementtool.demo.models.Category;
 import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.models.Project;
+import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.CategoryService;
 import com.managementtool.demo.services.ManagerService;
 import com.managementtool.demo.services.ProjectService;
+import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ public class ProjectController {
     ManagerService managerService = new ManagerService();
     Category category = new Category();
     CategoryService categoryService = new CategoryService();
+    Task task = new Task();
+    TaskService taskService = new TaskService();
 
     @GetMapping("/createProject")
     public String createProject(Model projectModel, HttpServletRequest request) {
@@ -49,7 +53,13 @@ public class ProjectController {
 
         List<Category> categoryName = new CategoryService().getAllCategorys();
 
+        List<Task> TaskName = new TaskService().getAllTasks();
+        
         categoryService.insertProjectIdToCategory(category);
+
+        taskService.insertCategoryId(task);
+
+        model.addAttribute("TaskName", TaskName);
         
         model.addAttribute("categoryName", categoryName);
 
