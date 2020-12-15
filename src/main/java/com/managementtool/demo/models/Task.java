@@ -14,6 +14,14 @@ public class Task {
         this.deadline = deadline;
     }
 
+    public Task(String taskname, String time, String cost, String deadline, int idtask) {
+        this.taskname = taskname;
+        this.time = time;
+        this.cost = cost;
+        this.deadline = deadline;
+        this.idtask = idtask;
+    }
+
     public Task() {
 
     }

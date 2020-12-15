@@ -54,10 +54,10 @@ public class TaskRepository {
 
                 while (resultSet.next()) {
                     Task tmpTask = new Task(
-                            resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
-                            resultSet.getString(4)
+                            resultSet.getString(4),
+                            resultSet.getString(5)
                     );
                     allTasks.add(tmpTask);
                 }

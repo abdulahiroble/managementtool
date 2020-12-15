@@ -53,13 +53,13 @@ public class ProjectController {
 
         List<Category> categoryName = new CategoryService().getAllCategorys();
 
-        List<Task> TaskName = new TaskService().getAllTasks();
+        List<Task> TasksList = new TaskService().getAllTasks();
         
         categoryService.insertProjectIdToCategory(category);
 
         taskService.insertCategoryId(task);
 
-        model.addAttribute("TaskName", TaskName);
+        model.addAttribute("TasksList", TasksList);
         
         model.addAttribute("categoryName", categoryName);
 
