@@ -27,6 +27,19 @@ public class TaskRepository {
             }
         }
 
+        public void insertManagerIdToProjectManagerId(Task task) {
+            String insertUserSQL = "UPDATE task, category SET categoryid = idcategory";
+    
+            try {
+    
+                PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+    
+                preparedStatement.execute();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
 
         public List<Task> selectAllTasksFromDatabase() {
 
@@ -41,10 +54,10 @@ public class TaskRepository {
 
                 while (resultSet.next()) {
                     Task tmpTask = new Task(
-                            resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
-                            resultSet.getString(4)
+                            resultSet.getString(4),
+                            resultSet.getString(5)
                     );
                     allTasks.add(tmpTask);
                 }
