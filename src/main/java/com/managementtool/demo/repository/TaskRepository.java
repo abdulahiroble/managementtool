@@ -27,7 +27,7 @@ public class TaskRepository {
             }
         }
 
-        public void insertManagerIdToProjectManagerId(Task task) {
+        public void insertIdCategoryToCategoryId(Task task) {
             String insertUserSQL = "UPDATE task, category SET categoryid = idcategory";
     
             try {

@@ -19,7 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 public class SubtasksController {
     ManagerService managerService = new ManagerService();
     SubtaskService subtaskService = new SubtaskService();
-    Task task = new Task();
+    Subtask subtask = new Subtask();
 
     @GetMapping("/createSubtask")
     public String createSubtask(Model projectModel, HttpServletRequest request) {
@@ -39,6 +39,8 @@ public class SubtasksController {
         Manager activeManager = managerService.getManagerByID(cookieId);
         
         projectModel.addAttribute("activeManager", activeManager);
+
+        subtaskService.insertIdTaskToTaskId(subtask);
 
         return "subtasks";
     }

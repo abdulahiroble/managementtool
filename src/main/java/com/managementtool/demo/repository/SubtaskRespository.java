@@ -27,6 +27,20 @@ public class SubtaskRespository {
         }
     }
 
+    public void insertIdTaskToTaskIdInsubtask(Subtask subtask) {
+        String insertUserSQL = "UPDATE subtask, task SET taskid = idtask";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
     public void updateSubtaskInfoInDatabase(Subtask subtask) {
         String updateSubtaskSQL = "UPDATE subtask SET subtaskname = ?, date = ?";

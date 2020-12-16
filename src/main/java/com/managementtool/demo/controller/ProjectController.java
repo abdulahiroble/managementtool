@@ -3,10 +3,12 @@ package com.managementtool.demo.controller;
 import com.managementtool.demo.models.Category;
 import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.models.Project;
+import com.managementtool.demo.models.Subtask;
 import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.CategoryService;
 import com.managementtool.demo.services.ManagerService;
 import com.managementtool.demo.services.ProjectService;
+import com.managementtool.demo.services.SubtaskService;
 import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class ProjectController {
     ManagerService managerService = new ManagerService();
     Category category = new Category();
     CategoryService categoryService = new CategoryService();
+    Subtask subtask = new Subtask();
+    SubtaskService subtaskService = new SubtaskService();
     Task task = new Task();
     TaskService taskService = new TaskService();
 
