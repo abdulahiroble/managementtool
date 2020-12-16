@@ -24,6 +24,10 @@ public class TaskService {
     public void insertNewTask(Task task) { taskRepository.insertTaskIntoDatabase(task);
     }
 
+    public Task getTaskById(int idtask) {
+        return taskRepository.selectTaskIdFromDatabase(idtask);
+    }
+
     public void updateTask(Task task) {
         taskRepository.updateTaskInfoInDatabase(task);
     }

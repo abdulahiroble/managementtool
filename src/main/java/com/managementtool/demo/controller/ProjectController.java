@@ -14,6 +14,7 @@ import com.managementtool.demo.services.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
@@ -57,13 +58,13 @@ public class ProjectController {
 
         List<Category> categoryName = new CategoryService().getAllCategorys();
 
-        List<Task> TasksList = new TaskService().getAllTasks();
+        List<Task> tasksList = new TaskService().getAllTasks();
         
         categoryService.insertProjectIdToCategory(category);
 
         taskService.insertCategoryId(task);
 
-        model.addAttribute("TasksList", TasksList);
+        model.addAttribute("tasksList", tasksList);
         
         model.addAttribute("categoryName", categoryName);
 
@@ -96,5 +97,26 @@ public class ProjectController {
         }
 
         return "redirect:/addcategory";
+    }
+
+    @GetMapping("/taskToViewInSubtask/{idtask}")
+    public String employeeFormToView(@PathVariable(value = "idtask") int idtask, Model model, HttpServletResponse response, HttpServletRequest request) {
+        
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
+        model.addAttribute("tasks", activeManager);
+        
+        try {
+
+            Task taskToView = taskService.getTaskById(idtask);
+
+            model.addAttribute("taskToView", taskToView);
+
+        } catch (Exception e) {
+            System.out.println("Error can't show employee profile " + e);
+        }
+        return "subtasks";
     }
 }

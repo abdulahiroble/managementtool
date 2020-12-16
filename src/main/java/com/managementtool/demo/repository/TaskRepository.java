@@ -54,6 +54,7 @@ public class TaskRepository {
 
                 while (resultSet.next()) {
                     Task tmpTask = new Task(
+                            resultSet.getInt(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
                             resultSet.getString(4),
@@ -66,6 +67,28 @@ public class TaskRepository {
                 System.out.println(e.getMessage());
             }
             return allTasks;
+        }
+
+        public Task selectTaskIdFromDatabase(int idtask) {
+
+            Task taskIdToReturn = new Task();
+    
+            String selectEmployee = "SELECT * FROM task WHERE idtask = ?";
+    
+            try {
+                PreparedStatement preparedStatement = establishConnection().prepareStatement(selectEmployee);
+                preparedStatement.setInt(1, idtask);
+    
+                ResultSet resultSet = preparedStatement.executeQuery();
+    
+                while (resultSet.next()) {
+                    taskIdToReturn = new Task(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                            resultSet.getString(5));
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            return taskIdToReturn;
         }
 
     public void updateTaskInfoInDatabase(Task task) {
