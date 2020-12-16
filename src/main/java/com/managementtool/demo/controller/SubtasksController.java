@@ -5,36 +5,53 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.managementtool.demo.models.Manager;
-import com.managementtool.demo.models.Project;
+import com.managementtool.demo.models.Subtask;
 import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.ManagerService;
+import com.managementtool.demo.services.SubtaskService;
 import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 @Controller
-public class TaskController {
+public class SubtasksController {
     ManagerService managerService = new ManagerService();
-    TaskService taskService = new TaskService();
-    Task task = new Task();
-    
-    @GetMapping("/createtask")
-    public String createProject(Model projectModel, HttpServletRequest request) {
+    SubtaskService subtaskService = new SubtaskService();
+    Subtask subtask = new Subtask();
+
+    @GetMapping("/createSubtask")
+    public String createSubtask(Model projectModel, HttpServletRequest request) {
 
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
         
         projectModel.addAttribute("activeManager", activeManager);
 
-        return "createtask";
+        return "createSubtask";
+    }
+    
+    @GetMapping("/subtasks")
+    public String showSubtasks(Model subtaskModel, HttpServletRequest request) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+        
+        subtaskModel.addAttribute("activeManager", activeManager);
+
+        List<Subtask> subtasksList = new SubtaskService().getAllSubtasks();
+
+        subtaskModel.addAttribute("subtasksList", subtasksList);
+
+        subtaskService.insertIdTaskToTaskId(subtask);
+
+        return "subtasks";
     }
 
-     @PostMapping("/postCreateTask")
+     @PostMapping("/postCreateSubtask")
      public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
 
           int cookieId = managerService.getCookieId(request);
@@ -43,25 +60,19 @@ public class TaskController {
           model.addAttribute("project", activeManager);
 
          try {
-               String taskname = dataFromForm.getParameter("taskname");
+               String subtaskname = dataFromForm.getParameter("subtaskname");
 
-               String time = dataFromForm.getParameter("time");
+               String date = dataFromForm.getParameter("date");
 
-               String cost = dataFromForm.getParameter("cost");
+               Subtask subtask = new Subtask(subtaskname, date);
 
-               String deadline = dataFromForm.getParameter("deadline");
-
-               Task task = new Task(taskname, time, cost, deadline);
-
-              // taskService.insertCategoryId(task);
-
-               taskService.insertNewTask(task);
+               subtaskService.insertNewSubtask(subtask);
          } catch (Exception e) {
              System.out.println("Fejl:" + e);
 
          }
 
-         return "redirect:/projects";
+         return "redirect:/subtasks";
      }
     
 }

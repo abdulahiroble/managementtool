@@ -47,8 +47,6 @@ public class CategoryController {
 
              Category category = new Category(categoryname);
 
-            // categoryService.insertProjectIdToCategory(category);
-
             categoryService.insertNewcategory(category);
 
         } catch (Exception e) {

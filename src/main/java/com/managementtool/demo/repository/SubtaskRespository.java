@@ -11,13 +11,14 @@ public class SubtaskRespository {
 
 
     public void insertSubtaskIntoDatabase(Subtask subtask) {
-        String insertTaskSQL = "INSERT INTO task (subtaskname, date, cost) VALUES (?, ?)";
+        String insertTaskSQL = "INSERT INTO subtask (subtaskname, date) VALUES (?, ?)";
 
         try {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertTaskSQL);
             preparedStatement.setString(1, subtask.getSubtaskname());
-            preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
+            preparedStatement.setString(2, subtask.getDate());
+            // preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
 
 
             preparedStatement.execute();
@@ -26,6 +27,20 @@ public class SubtaskRespository {
         }
     }
 
+    public void insertIdTaskToTaskIdInsubtask(Subtask subtask) {
+        String insertUserSQL = "UPDATE subtask, task SET taskid = idtask";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
     public void updateSubtaskInfoInDatabase(Subtask subtask) {
         String updateSubtaskSQL = "UPDATE subtask SET subtaskname = ?, date = ?";
@@ -33,7 +48,8 @@ public class SubtaskRespository {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(updateSubtaskSQL);
             preparedStatement.setString(1, subtask.getSubtaskname());
-            preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
+            preparedStatement.setString(2, subtask.getDate());
+            // preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
 
 
             System.out.println(preparedStatement.executeUpdate());
@@ -57,8 +73,8 @@ public class SubtaskRespository {
 
             while (resultSet.next()) {
                 Subtask tmpSubtask = new Subtask(
-                        resultSet.getString(1),
-                        resultSet.getDate(2)
+                        resultSet.getString(2),
+                        resultSet.getString(3)
 
                 );
                 allSubtasks.add(tmpSubtask);

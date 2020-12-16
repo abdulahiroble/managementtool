@@ -18,10 +18,14 @@ public class TaskService {
     }
 
     public void insertCategoryId(Task task) {
-        taskRepository.insertManagerIdToProjectManagerId(task);
+        taskRepository.insertIdCategoryToCategoryId(task);
     }   
 
     public void insertNewTask(Task task) { taskRepository.insertTaskIntoDatabase(task);
+    }
+
+    public Task getTaskById(int idtask) {
+        return taskRepository.selectTaskIdFromDatabase(idtask);
     }
 
     public void updateTask(Task task) {
