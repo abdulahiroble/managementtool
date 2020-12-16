@@ -3,8 +3,10 @@ package com.managementtool.demo.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.models.Subtask;
 import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.ManagerService;
+import com.managementtool.demo.services.SubtaskService;
 import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class SubtasksController {
     ManagerService managerService = new ManagerService();
-    TaskService taskService = new TaskService();
+    SubtaskService subtaskService = new SubtaskService();
     Task task = new Task();
 
     @GetMapping("/createSubtask")
@@ -50,25 +52,19 @@ public class SubtasksController {
           model.addAttribute("project", activeManager);
 
          try {
-               String taskname = dataFromForm.getParameter("taskname");
+               String subtaskname = dataFromForm.getParameter("subtaskname");
 
-               String time = dataFromForm.getParameter("time");
+               String date = dataFromForm.getParameter("date");
 
-               String cost = dataFromForm.getParameter("cost");
+               Subtask subtask = new Subtask(subtaskname, date);
 
-               String deadline = dataFromForm.getParameter("deadline");
-
-               Task task = new Task(taskname, time, cost, deadline);
-
-              // taskService.insertCategoryId(task);
-
-               taskService.insertNewTask(task);
+               subtaskService.insertNewSubtask(subtask);
          } catch (Exception e) {
              System.out.println("Fejl:" + e);
 
          }
 
-         return "redirect:/projects";
+         return "redirect:/subtasks";
      }
     
 }

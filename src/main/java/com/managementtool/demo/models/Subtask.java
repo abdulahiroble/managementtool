@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Subtask {
     private String subtaskname;
-    private Date date;
+    private String date;
     private int idsubtask;
 
-    public Subtask(String subtaskname, Date date) {
+    public Subtask(String subtaskname, String date) {
         this.subtaskname = subtaskname;
         this.date = date;
     }
@@ -25,11 +25,11 @@ public class Subtask {
     }
 
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -11,13 +11,14 @@ public class SubtaskRespository {
 
 
     public void insertSubtaskIntoDatabase(Subtask subtask) {
-        String insertTaskSQL = "INSERT INTO task (subtaskname, date, cost) VALUES (?, ?)";
+        String insertTaskSQL = "INSERT INTO subtask (subtaskname, date) VALUES (?, ?)";
 
         try {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertTaskSQL);
             preparedStatement.setString(1, subtask.getSubtaskname());
-            preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
+            preparedStatement.setString(2, subtask.getDate());
+            // preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
 
 
             preparedStatement.execute();
@@ -33,7 +34,8 @@ public class SubtaskRespository {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(updateSubtaskSQL);
             preparedStatement.setString(1, subtask.getSubtaskname());
-            preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
+            preparedStatement.setString(2, subtask.getDate());
+            // preparedStatement.setDate(2, new java.sql.Date(subtask.getDate().getTime()));
 
 
             System.out.println(preparedStatement.executeUpdate());
