@@ -12,6 +12,12 @@ public class Subtask {
         this.date = date;
     }
 
+    public Subtask(String subtaskname, String date, int idsubtask) {
+        this.subtaskname = subtaskname;
+        this.date = date;
+        this.idsubtask = idsubtask;
+    }
+
     public Subtask() {
 
     }

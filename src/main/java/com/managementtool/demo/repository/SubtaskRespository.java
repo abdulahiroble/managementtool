@@ -73,8 +73,8 @@ public class SubtaskRespository {
 
             while (resultSet.next()) {
                 Subtask tmpSubtask = new Subtask(
-                        resultSet.getString(1),
-                        resultSet.getDate(2)
+                        resultSet.getString(2),
+                        resultSet.getString(3)
 
                 );
                 allSubtasks.add(tmpSubtask);

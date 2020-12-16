@@ -1,5 +1,7 @@
 package com.managementtool.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.managementtool.demo.models.Manager;
@@ -33,12 +35,16 @@ public class SubtasksController {
     }
     
     @GetMapping("/subtasks")
-    public String showSubtasks(Model projectModel, HttpServletRequest request) {
+    public String showSubtasks(Model subtaskModel, HttpServletRequest request) {
 
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
         
-        projectModel.addAttribute("activeManager", activeManager);
+        subtaskModel.addAttribute("activeManager", activeManager);
+
+        List<Subtask> subtasksList = new SubtaskService().getAllSubtasks();
+
+        subtaskModel.addAttribute("subtasksList", subtasksList);
 
         subtaskService.insertIdTaskToTaskId(subtask);
 
