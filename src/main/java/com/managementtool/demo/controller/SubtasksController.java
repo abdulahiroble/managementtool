@@ -25,6 +25,17 @@ public class SubtasksController {
     Subtask subtask = new Subtask();
     TaskService taskService = new TaskService();
 
+    @GetMapping("/addemployees")
+    public String addEmployeeToTask(Model projectModel, HttpServletRequest request) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+        
+        projectModel.addAttribute("activeManager", activeManager);
+
+        return "addemployees";
+    }
+
     @GetMapping("/createSubtask")
     public String createSubtask(Model projectModel, HttpServletRequest request) {
 
