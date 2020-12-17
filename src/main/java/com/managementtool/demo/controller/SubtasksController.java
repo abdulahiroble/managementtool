@@ -14,6 +14,7 @@ import com.managementtool.demo.services.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
@@ -22,6 +23,7 @@ public class SubtasksController {
     ManagerService managerService = new ManagerService();
     SubtaskService subtaskService = new SubtaskService();
     Subtask subtask = new Subtask();
+    TaskService taskService = new TaskService();
 
     @GetMapping("/createSubtask")
     public String createSubtask(Model projectModel, HttpServletRequest request) {
@@ -35,18 +37,26 @@ public class SubtasksController {
     }
     
     @GetMapping("/subtasks")
-    public String showSubtasks(Model subtaskModel, HttpServletRequest request) {
+    public String showSubtasks(Model subtaskModel, HttpServletRequest request, @PathVariable(value = "idtask") int idtask) {
 
         int cookieId = managerService.getCookieId(request);
         Manager activeManager = managerService.getManagerByID(cookieId);
         
         subtaskModel.addAttribute("activeManager", activeManager);
 
-        List<Subtask> subtasksList = new SubtaskService().getAllSubtasks();
+        // List<Subtask> subtasksList = new SubtaskService().getAllSubtasks();
 
-        subtaskModel.addAttribute("subtasksList", subtasksList);
+        // List<Task> tasksList = new TaskService().getAllTasks();
 
-        subtaskService.insertIdTaskToTaskId(subtask);
+        // subtaskModel.addAttribute("tasksList", tasksList);
+
+        // subtaskModel.addAttribute("subtasksList", subtasksList);
+
+        // subtaskService.insertIdTaskToTaskId(subtask);
+
+        // Task taskToView = taskService.getTaskById(idtask);
+
+        // subtaskModel.addAttribute("taskToView", taskToView);
 
         return "subtasks";
     }
