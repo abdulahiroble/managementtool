@@ -99,7 +99,7 @@ public class ProjectController {
         return "redirect:/addcategory";
     }
 
-    @GetMapping("/taskToViewInSubtask/{idtask}")
+    @GetMapping("/subtasks/{idtask}")
     public String employeeFormToView(@PathVariable(value = "idtask") int idtask, Model model, HttpServletResponse response, HttpServletRequest request) {
         
         int cookieId = managerService.getCookieId(request);
@@ -111,6 +111,16 @@ public class ProjectController {
         try {
 
             Task taskToView = taskService.getTaskById(idtask);
+
+            List<Subtask> subtasksList = new SubtaskService().getAllSubtasks();
+
+            List<Task> tasksList = new TaskService().getAllTasks();
+    
+            model.addAttribute("tasksList", tasksList);
+    
+            model.addAttribute("subtasksList", subtasksList);
+    
+            subtaskService.insertIdTaskToTaskId(subtask);
 
             model.addAttribute("taskToView", taskToView);
 
