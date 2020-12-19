@@ -2,6 +2,7 @@ package com.managementtool.demo.repository;
 
 import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.models.Task;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,6 +47,38 @@ public class EmployeeRepository {
             System.out.println(e.getMessage());
         }
     }
+
+    public void insertTaskIdToEmployeeTask(Employee employee) {
+        String insertUserSQL = "UPDATE employee, task SET taskidemployee = idtask";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+            // preparedStatement.setInt(1, employee.getManagerId());
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    
+    public void employeeAndTaskToViewFromDatabase(Employee employee, Task task) {
+        String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = taskidemployee WHERE idtask = ?";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+            preparedStatement.setInt(1, task.getIdtask());
+            
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
     public void insertEmployeeToTaskInDatbase(Employee employeeToDisplay) {
         String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";

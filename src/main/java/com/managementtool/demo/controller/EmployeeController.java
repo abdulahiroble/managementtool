@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.EmployeeTask;
 import com.managementtool.demo.models.Manager;
 import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.EmployeeService;
+import com.managementtool.demo.services.EmployeeTaskService;
 import com.managementtool.demo.services.ManagerService;
 import com.managementtool.demo.services.TaskService;
 
@@ -30,6 +32,9 @@ public class EmployeeController {
     TaskService taskService = new TaskService();
     Manager manager = new Manager();
     Cookie cookie;
+    Task task = new Task();
+    EmployeeTaskService employeeTaskService = new EmployeeTaskService();
+    EmployeeTask employeeTask = new EmployeeTask();
 
     @GetMapping("/addemployeetotask")
     public String addemployeeToTask(Model model) {
@@ -37,10 +42,14 @@ public class EmployeeController {
         List<Employee> listEmployee = employeeService.getAllEmployees();
 
         model.addAttribute("listEmployee", listEmployee);
+        
 
         List<Task> tasksList = new TaskService().getAllTasks();
     
         model.addAttribute("tasksList", tasksList);
+        
+
+        // employeeService.showEmployeeToTask(employee, task);
 
         return "addemployeetotask";
     }
@@ -61,9 +70,17 @@ public class EmployeeController {
 
             model.addAttribute("taskToDisplay", taskToDisplay);
 
-            employeeService.insertEmployeeToTask(employeeToDisplay);
+            employeeTask = new EmployeeTask(firstname, taskname);
 
-            taskService.insetTaskToEmployee(taskToDisplay);
+            employeeTaskService.insertNewEmployeeTask(employeeTask);
+
+             employeeService.insertEmployeeToTask(employeeToDisplay);
+
+             taskService.insetTaskToEmployee(taskToDisplay);
+
+             employeeService.insertTaskId(employeeToDisplay);
+
+
 
       } catch (Exception e) {
           System.out.println("Fejl:" + e);
@@ -72,6 +89,8 @@ public class EmployeeController {
 
       return "addemployeetotask";
     }
+
+    
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {
