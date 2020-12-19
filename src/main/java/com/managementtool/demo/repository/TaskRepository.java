@@ -27,6 +27,22 @@ public class TaskRepository {
             }
         }
 
+        
+    public void insetTaskToEmployee(Task taskToDisplay) {
+        String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+            preparedStatement.setString(1, taskToDisplay.getTaskname());
+            // preparedStatement.setInt(1, employee.getManagerId());
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
         public void insertIdCategoryToCategoryId(Task task) {
             String insertUserSQL = "UPDATE task, category SET categoryid = idcategory";
     

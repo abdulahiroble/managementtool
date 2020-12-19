@@ -31,6 +31,10 @@ public class Task {
 
     }
 
+    public Task(String taskname) {
+        this.taskname = taskname;
+    }
+
     public String getTaskname() {
         return taskname;
     }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add employee to task</title>
+  </head>
+  <body>
+    <h1>Add employee to task</h1>
+    <form action="/createAddemployeetotask" method="post" name="firstform">
+      <div class="col" style="text-align: left">
+        <div>
+          <h3>Vælg employee</h3>
+          <select class="form-control" id="userInfo" name="firstname">
+            <option id="option" value="0">Employee:</option>
+            <option
+              th:each="employee : ${listEmployee}"
+              th:value="${employee.getFirstname()}"
+              th:text="${employee.getFirstname()}"
+            ></option>
+          </select>
+          <br />
+
+          <h3>Vælg task</h3>
+          <select class="form-control" id="userInfo" name="taskname">
+            <option id="option" value="0">Task:</option>
+            <option
+              th:each="task : ${tasksList}"
+              th:value="${task.getTaskname()}"
+              th:text="${task.getTaskname()}"
+            ></option>
+          </select>
+          <br /><br />
+
+          <input type="submit" value="Add to task" />
+        </div>
+      </div>
+    </form>
+    <br />
+
+    <div th:each="employee : ${taskToDisplay}">
+      <div th:text="${employee.getFirstname()}"></div>
+    </div>
+  </body>
+</html>

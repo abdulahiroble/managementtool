@@ -20,6 +20,10 @@ public class EmployeeService {
         employeeRepository.insertManagerIdToEmployeeManagerId(employee);
     }     
 
+    public void insertEmployeeToTask(Employee taskToDisplay) {
+        employeeRepository.insertEmployeeToTaskInDatbase(taskToDisplay);
+    }     
+
     public List<Employee> getAllEmployees() {
 
         List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.managementtool.demo.models.Employee;
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.EmployeeService;
 import com.managementtool.demo.services.ManagerService;
+import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,41 @@ public class EmployeeController {
     ManagerService managerService = new ManagerService();
     Manager manager = new Manager();
     Cookie cookie;
+
+    @GetMapping("/addemployeetotask")
+    public String addemployeeToTask(Model model) {
+
+        List<Employee> listEmployee = employeeService.getAllEmployees();
+
+        model.addAttribute("listEmployee", listEmployee);
+
+        List<Task> tasksList = new TaskService().getAllTasks();
+    
+        model.addAttribute("tasksList", tasksList);
+
+        return "addemployeetotask";
+    }
+
+    @PostMapping("/createAddemployeetotask")
+    public String createAddemployeetotask(Model model, WebRequest dataFromForm) {
+
+        try {
+            String firstname = dataFromForm.getParameter("firstname");
+
+            // String time = dataFromForm.getParameter("taskname");
+
+            Employee taskToDisplay = new Employee(firstname);
+
+            model.addAttribute("taskToDisplay", taskToDisplay);
+
+            employeeService.insertEmployeeToTask(taskToDisplay);
+      } catch (Exception e) {
+          System.out.println("Fejl:" + e);
+
+      }
+
+      return "addemployeetotask";
+    }
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {

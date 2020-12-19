@@ -47,6 +47,21 @@ public class EmployeeRepository {
         }
     }
 
+    public void insertEmployeeToTaskInDatbase(Employee taskToDisplay) {
+        String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";
+
+        try {
+
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
+            // preparedStatement.setString(1, taskToDisplay.getFirstname());
+            // preparedStatement.setInt(1, employee.getManagerId());
+
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public List<Employee> selectAllEmployeesFromDatabase() {
 
         String selectAllEmployees = "SELECT * FROM employee WHERE managerid = 1";
