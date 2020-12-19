@@ -34,7 +34,7 @@ public class TaskRepository {
         try {
 
             PreparedStatement preparedStatement = establishConnection().prepareStatement(insertUserSQL);
-            preparedStatement.setString(1, taskToDisplay.getTaskname());
+            // preparedStatement.setString(1, taskToDisplay.getTaskname());
             // preparedStatement.setInt(1, employee.getManagerId());
 
             preparedStatement.execute();

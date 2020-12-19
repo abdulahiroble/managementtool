@@ -27,6 +27,7 @@ public class EmployeeController {
     EmployeeService employeeService = new EmployeeService();
     List<Employee> listEmployee;
     ManagerService managerService = new ManagerService();
+    TaskService taskService = new TaskService();
     Manager manager = new Manager();
     Cookie cookie;
 
@@ -50,13 +51,20 @@ public class EmployeeController {
         try {
             String firstname = dataFromForm.getParameter("firstname");
 
-            String task = dataFromForm.getParameter("taskname");
+            String taskname = dataFromForm.getParameter("taskname");
 
             Employee employeeToDisplay = new Employee(firstname);
 
+            Task taskToDisplay = new Task(taskname);
+
             model.addAttribute("employeeToDisplay", employeeToDisplay);
 
+            model.addAttribute("taskToDisplay", taskToDisplay);
+
             employeeService.insertEmployeeToTask(employeeToDisplay);
+
+            taskService.insetTaskToEmployee(taskToDisplay);
+
       } catch (Exception e) {
           System.out.println("Fejl:" + e);
 
