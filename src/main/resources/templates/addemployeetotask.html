@@ -12,7 +12,7 @@
         <div>
           <h3>Vælg employee</h3>
           <select class="form-control" id="userInfo" name="firstname">
-            <option id="option" value="0">Employee:</option>
+            <option id="option" value="0">Employee</option>
             <option
               th:each="employee : ${listEmployee}"
               th:value="${employee.getFirstname()}"
@@ -21,9 +21,19 @@
           </select>
           <br />
 
+          <h3>Vælg antal timer</h3>
+          <select class="form-control" id="userInfo" name="taskname">
+            <option id="option" value="0">timer</option>
+            <option
+              th:each="task : ${listEmployee}"
+              th:value="${task.getRate()}"
+              th:text="${task.getRate()}"
+            ></option>
+          </select>
+
           <h3>Vælg task</h3>
           <select class="form-control" id="userInfo" name="taskname">
-            <option id="option" value="0">Task:</option>
+            <option id="option" value="0">Task</option>
             <option
               th:each="task : ${tasksList}"
               th:value="${task.getTaskname()}"
@@ -38,7 +48,7 @@
     </form>
     <br />
 
-    <div th:each="employee : ${taskToDisplay}">
+    <div th:each="employee : ${employeeToDisplay}">
       <div th:text="${employee.getFirstname()}"></div>
     </div>
   </body>

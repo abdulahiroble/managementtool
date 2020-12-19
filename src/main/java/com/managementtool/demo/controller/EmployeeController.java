@@ -50,13 +50,13 @@ public class EmployeeController {
         try {
             String firstname = dataFromForm.getParameter("firstname");
 
-            // String time = dataFromForm.getParameter("taskname");
+            String task = dataFromForm.getParameter("taskname");
 
-            Employee taskToDisplay = new Employee(firstname);
+            Employee employeeToDisplay = new Employee(firstname);
 
-            model.addAttribute("taskToDisplay", taskToDisplay);
+            model.addAttribute("employeeToDisplay", employeeToDisplay);
 
-            employeeService.insertEmployeeToTask(taskToDisplay);
+            employeeService.insertEmployeeToTask(employeeToDisplay);
       } catch (Exception e) {
           System.out.println("Fejl:" + e);
 

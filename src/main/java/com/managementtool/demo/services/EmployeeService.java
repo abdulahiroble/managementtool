@@ -20,8 +20,8 @@ public class EmployeeService {
         employeeRepository.insertManagerIdToEmployeeManagerId(employee);
     }     
 
-    public void insertEmployeeToTask(Employee taskToDisplay) {
-        employeeRepository.insertEmployeeToTaskInDatbase(taskToDisplay);
+    public void insertEmployeeToTask(Employee employeeToDisplay) {
+        employeeRepository.insertEmployeeToTaskInDatbase(employeeToDisplay);
     }     
 
     public List<Employee> getAllEmployees() {

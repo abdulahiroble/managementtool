@@ -47,7 +47,7 @@ public class EmployeeRepository {
         }
     }
 
-    public void insertEmployeeToTaskInDatbase(Employee taskToDisplay) {
+    public void insertEmployeeToTaskInDatbase(Employee employeeToDisplay) {
         String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";
 
         try {
