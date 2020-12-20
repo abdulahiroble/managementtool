@@ -3,6 +3,7 @@ package com.managementtool.demo.services;
 import java.util.List;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.Task;
 import com.managementtool.demo.repository.EmployeeRepository;
 
 public class EmployeeService {
@@ -18,6 +19,20 @@ public class EmployeeService {
 
      public void insertManagerId(Employee employee) {
         employeeRepository.insertManagerIdToEmployeeManagerId(employee);
+    }     
+
+    public void  showEmployeeToTask(Employee employee, Task task) {
+        employeeRepository.employeeAndTaskToViewFromDatabase(employee, task);
+    }  
+
+
+    public void  insertTaskId(Employee employee) {
+        employeeRepository.insertTaskIdToEmployeeTask(employee);
+    }  
+   
+
+    public void insertEmployeeToTask(Employee employeeToDisplay) {
+        employeeRepository.insertEmployeeToTaskInDatbase(employeeToDisplay);
     }     
 
     public List<Employee> getAllEmployees() {

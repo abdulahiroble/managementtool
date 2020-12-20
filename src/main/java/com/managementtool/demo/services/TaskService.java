@@ -17,6 +17,10 @@ public class TaskService {
         return allTasks;
     }
 
+    public void insetTaskToEmployee(Task taskToDisplay) {
+        taskRepository.insetTaskToEmployee(taskToDisplay);
+    }     
+
     public void insertCategoryId(Task task) {
         taskRepository.insertIdCategoryToCategoryId(task);
     }   

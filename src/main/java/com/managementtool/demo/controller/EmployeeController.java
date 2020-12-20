@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.managementtool.demo.models.Employee;
+import com.managementtool.demo.models.EmployeeTask;
 import com.managementtool.demo.models.Manager;
+import com.managementtool.demo.models.Task;
 import com.managementtool.demo.services.EmployeeService;
+import com.managementtool.demo.services.EmployeeTaskService;
 import com.managementtool.demo.services.ManagerService;
+import com.managementtool.demo.services.TaskService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +29,71 @@ public class EmployeeController {
     EmployeeService employeeService = new EmployeeService();
     List<Employee> listEmployee;
     ManagerService managerService = new ManagerService();
+    TaskService taskService = new TaskService();
     Manager manager = new Manager();
     Cookie cookie;
+    Task task = new Task();
+    EmployeeTaskService employeeTaskService = new EmployeeTaskService();
+    EmployeeTask employeeTask = new EmployeeTask();
+
+    @GetMapping("/addemployeetotask")
+    public String addemployeeToTask(Model model) {
+
+        List<Employee> listEmployee = employeeService.getAllEmployees();
+
+        model.addAttribute("listEmployee", listEmployee);
+        
+
+        List<Task> tasksList = new TaskService().getAllTasks();
+    
+        model.addAttribute("tasksList", tasksList);
+
+        List<EmployeeTask> listEmployeeTask = employeeTaskService.getAllEmployeesTask();
+
+        model.addAttribute("listEmployeeTask", listEmployeeTask);
+        
+
+        // employeeService.showEmployeeToTask(employee, task);
+
+        return "addemployeetotask";
+    }
+
+    @PostMapping("/createAddemployeetotask")
+    public String createAddemployeetotask(Model model, WebRequest dataFromForm) {
+
+        try {
+            String firstname = dataFromForm.getParameter("firstname");
+
+            String taskname = dataFromForm.getParameter("taskname");
+
+            Employee employeeToDisplay = new Employee(firstname);
+
+            Task taskToDisplay = new Task(taskname);
+
+            model.addAttribute("employeeToDisplay", employeeToDisplay);
+
+            model.addAttribute("taskToDisplay", taskToDisplay);
+
+            employeeTask = new EmployeeTask(firstname, taskname);
+
+            employeeTaskService.insertNewEmployeeTask(employeeTask);
+
+             employeeService.insertEmployeeToTask(employeeToDisplay);
+
+             taskService.insetTaskToEmployee(taskToDisplay);
+
+             employeeService.insertTaskId(employeeToDisplay);
+
+
+      } catch (Exception e) {
+          System.out.println("Fejl:" + e);
+
+      }
+
+      return "redirect:/addemployeetotask";
+    }
+
+    
 
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {
