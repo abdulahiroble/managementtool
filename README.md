@@ -2,8 +2,6 @@
 
 Instal MysQL Workbench https://dev.mysql.com/downloads/workbench/
 
-```
-
 ### Connect to datbase using JDBC
 
 ```
