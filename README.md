@@ -36,3 +36,8 @@ The employee login is:
 email:hans@gmail.com
 Password: hans123
 ```
+
+## Demo showing manager login in and assigning task to employeee
+
+![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/43350898/102712461-c1a6fd80-42c1-11eb-87ac-4ed25a4e3730.gif)
+
