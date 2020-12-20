@@ -47,6 +47,10 @@ public class EmployeeController {
         List<Task> tasksList = new TaskService().getAllTasks();
     
         model.addAttribute("tasksList", tasksList);
+
+        List<EmployeeTask> listEmployeeTask = employeeTaskService.getAllEmployeesTask();
+
+        model.addAttribute("listEmployeeTask", listEmployeeTask);
         
 
         // employeeService.showEmployeeToTask(employee, task);
@@ -81,13 +85,12 @@ public class EmployeeController {
              employeeService.insertTaskId(employeeToDisplay);
 
 
-
       } catch (Exception e) {
           System.out.println("Fejl:" + e);
 
       }
 
-      return "addemployeetotask";
+      return "redirect:/addemployeetotask";
     }
 
     

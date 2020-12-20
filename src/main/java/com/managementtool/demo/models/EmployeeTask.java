@@ -6,7 +6,7 @@ public class EmployeeTask {
     private int idemployeetask;
 
 
-    public EmployeeTask(String firstname, String taskname, int idemployeetask) {
+    public EmployeeTask(int idemployeetask,String firstname, String taskname) {
         this.firstname = firstname;
         this.taskname = taskname;
         this.idemployeetask = idemployeetask;
