@@ -12,3 +12,9 @@ public Connection establishConnection() throws SQLException {
             return connection;
         }
 ```
+
+## Run application
+
+```
+src -> main -> ManagementToolApplication.java
+```
