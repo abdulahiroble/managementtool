@@ -2,7 +2,7 @@
 
 Instal MysQL Workbench https://dev.mysql.com/downloads/workbench/
 
-## Setup remote database
+### Setup remote database
 
 Create a free gearhost account https://my.gearhost.com/account/signup
 
