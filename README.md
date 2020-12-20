@@ -41,3 +41,10 @@ Password: hans123
 
 ![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/43350898/102712461-c1a6fd80-42c1-11eb-87ac-4ed25a4e3730.gif)
 
+
+Developers involved:
+
+* Abdulahi Roble
+* Thomas West
+* Robert Brahimi
+
