@@ -2,6 +2,10 @@
 
 Instal MysQL Workbench https://dev.mysql.com/downloads/workbench/
 
+## Setup remote database
+
+Create a free gearhost account https://my.gearhost.com/account/signup
+
 ### Connect to datbase using JDBC
 
 ```
@@ -17,4 +21,18 @@ public Connection establishConnection() throws SQLException {
 
 ```
 src -> main -> ManagementToolApplication.java
+```
+
+The admin login is:
+
+```
+email: abdulahi_2610@hotmail.com
+Password: 123
+```
+
+The employee login is:
+
+```
+email:hans@gmail.com
+Password: hans123
 ```
