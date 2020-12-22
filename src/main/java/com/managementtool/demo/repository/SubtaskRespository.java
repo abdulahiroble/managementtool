@@ -87,9 +87,10 @@ public class SubtaskRespository {
     }
 
 
+
     public Connection establishConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
-                "managementtool", "Ef2y7M!d!rA8");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://35.197.230.243/managementtool",
+                "managementtool", "password");
 
         return connection;
     }
