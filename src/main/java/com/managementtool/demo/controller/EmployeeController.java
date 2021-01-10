@@ -51,9 +51,6 @@ public class EmployeeController {
         List<EmployeeTask> listEmployeeTask = employeeTaskService.getAllEmployeesTask();
 
         model.addAttribute("listEmployeeTask", listEmployeeTask);
-        
-
-        // employeeService.showEmployeeToTask(employee, task);
 
         return "addemployeetotask";
     }
@@ -164,16 +161,14 @@ public class EmployeeController {
             String postal = dataFromForm.getParameter("postal");
             String city = dataFromForm.getParameter("city");
             String profession = dataFromForm.getParameter("profession");
-            String rate = dataFromForm.getParameter("rate");
-            String phone = dataFromForm.getParameter("phone");
+            int rate = Integer.parseInt(request.getParameter("rate"));
+            int phone = Integer.parseInt(request.getParameter("phone"));
 
             employee = new Employee(firstname, lastname, email, password, address, postal, city, profession, rate,
                     phone);
 
             employeeService.insertNewEmployee(employee);
             employeeService.insertManagerId(employee);
-
-            // response.addCookie(cookie);
 
         } catch (Exception e) {
             System.out.println("Fejl:" + e);

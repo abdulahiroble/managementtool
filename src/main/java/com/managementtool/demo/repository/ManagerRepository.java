@@ -20,7 +20,7 @@ public class ManagerRepository {
             preparedStatement.setString(3, manager.getCompany());
             preparedStatement.setString(4, manager.getEmail());
             preparedStatement.setString(5, manager.getPassword());
-            preparedStatement.setString(6, manager.getPhone());
+            preparedStatement.setInt(6, manager.getPhone());
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -74,7 +74,7 @@ public class ManagerRepository {
                         resultSet.getString(4),
                         resultSet.getString(5),
                         resultSet.getString(6),
-                        resultSet.getString(7)
+                        resultSet.getInt(7)
 
                 );
             }
@@ -102,7 +102,7 @@ public class ManagerRepository {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getString(6));
+                        resultSet.getInt(6));
                 allManagers.add(tmpManager);
             }
 
@@ -132,7 +132,7 @@ public class ManagerRepository {
                         resultSet.getString(4),
                         resultSet.getString(5),
                         resultSet.getString(6),
-                        resultSet.getString(7)
+                        resultSet.getInt(7)
                 );
             }
         } catch (SQLException e) {

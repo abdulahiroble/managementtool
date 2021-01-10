@@ -7,10 +7,10 @@ public class Manager {
     private String company;
     private String email;
     private String password;
-    private String phone;
+    private int phone;
     private int idmanager;
 
-    public Manager(String firstname, String lastname, String company, String email, String password, String phone) {
+    public Manager(String firstname, String lastname, String company, String email, String password, int phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.company = company;
@@ -20,7 +20,7 @@ public class Manager {
 
     }
 
-    public Manager(int idmanger, String firstname, String lastname, String company, String email, String password, String phone) {
+    public Manager(int idmanger, String firstname, String lastname, String company, String email, String password, int phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.company = company;
@@ -86,11 +86,11 @@ public class Manager {
         this.password = password;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
