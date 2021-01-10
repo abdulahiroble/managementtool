@@ -9,13 +9,13 @@ public class Employee {
     private String postal;
     private String city;
     private String profession;
-    private String rate;
-    private String phone;
+    private int rate;
+    private int phone;
     private int idemployee;
     private int managerId;
 
     public Employee(String firstname, String lastname, String email, String password, String address, String postal,
-            String city, String profession, String rate, String phone) {
+            String city, String profession, int rate, int phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -41,7 +41,7 @@ public class Employee {
     }
 
    public Employee(int idemployee, String firstname, String lastname, String email, String password, String address,
-            String postal, String city, String profession, String rate, String phone) {
+            String postal, String city, String profession, int rate, int phone) {
         this.idemployee = idemployee;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -141,19 +141,19 @@ public class Employee {
         this.profession = profession;
     }
 
-    public String getRate() {
+    public int getRate() {
         return rate;
     }
 
-    public void setRate(String rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
