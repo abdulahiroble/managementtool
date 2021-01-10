@@ -44,7 +44,7 @@ public class LoginController {
     }
 
     @PostMapping("/postCreate")
-    public String postCreate(WebRequest dataFromForm, HttpServletResponse response) {
+    public String postCreate(WebRequest dataFromForm, HttpServletResponse response, HttpServletRequest request) {
 
         try {
             String firstname = dataFromForm.getParameter("firstname");
@@ -52,7 +52,7 @@ public class LoginController {
             String company = dataFromForm.getParameter("email");
             String email = dataFromForm.getParameter("email");
             String password = dataFromForm.getParameter("password");
-            String phone = dataFromForm.getParameter("phone");
+            int phone = Integer.parseInt(request.getParameter("phone"));
 
             manager = new Manager(firstname, lastname, company, email, password, phone);
 
