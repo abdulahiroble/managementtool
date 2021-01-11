@@ -9,10 +9,18 @@ public class EmployeeTaskService {
 
     EmployeeTaskRepository employeeTaskRepository = new EmployeeTaskRepository();
 
+    /**
+     * Gemmer en EmployeeTask i databasen
+     * @param employeeTask
+     */
     public void insertNewEmployeeTask(EmployeeTask employeeTask) {
         employeeTaskRepository.insertEmployeeTaskIntoDatabase(employeeTask);
-    }   
-    
+    }
+
+    /**
+     * Sender en liste med alle EmployeesTask
+     * @return
+     */
     public List<EmployeeTask> getAllEmployeesTask() {
 
         List<EmployeeTask> allEmployees = employeeTaskRepository.selectAllEmployeesTask();

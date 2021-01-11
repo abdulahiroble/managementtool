@@ -9,6 +9,11 @@ import java.util.List;
 
 public class ManagerRepository {
 
+
+    /**
+     * Indsætter ny manager i databasen.
+     * @param manager
+     * */
     public void insertUserIntoDatabase(Manager manager) {
         String insertUserSQL = "INSERT INTO manager (firstname, lastname, company, email, password, phone) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -28,6 +33,9 @@ public class ManagerRepository {
         }
     }
 
+    /**
+     * Vælger alle managers email og password og returnerer dem som en ArrayList.
+     * */
     public List<Manager> selectAllManagersLoginInformationFromDatabase() {
 
         String selectAllUsers = "SELECT * FROM manager";
@@ -51,7 +59,10 @@ public class ManagerRepository {
     }
 
 
-
+    /**
+     * Vælger en enkelt manager i databasen ud fra email og returnerer et objekt af Manager.
+     * @param email
+     * */
     public Manager selectManagerFromDatabaseFromEmail(String email) {
 
         Manager managerToReturn = new Manager();
@@ -84,6 +95,9 @@ public class ManagerRepository {
         return managerToReturn;
     }
 
+    /**
+     * Vælger alle managers og indsætter dem i en ArrayList.
+     * */
     public List<Manager> selectAllManagersFromDatabase() {
 
         String selectAllManagers = "SELECT * FROM manager";
@@ -112,6 +126,10 @@ public class ManagerRepository {
         return allManagers;
     }
 
+    /**
+     * Vælger en enkelt manager fra databasen ud fra idmanager og retunerer et objekt af Manager.
+     * @param idmanager
+     * */
     public Manager selectManagerFromDatabaseBasedOnId(int idmanager) {
 
         Manager managerToReturn = new Manager();
@@ -142,7 +160,9 @@ public class ManagerRepository {
     }
 
 
-
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");

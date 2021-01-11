@@ -30,9 +30,6 @@ public class EmployeeController {
     List<Employee> listEmployee;
     ManagerService managerService = new ManagerService();
     TaskService taskService = new TaskService();
-    Manager manager = new Manager();
-    Cookie cookie;
-    Task task = new Task();
     EmployeeTaskService employeeTaskService = new EmployeeTaskService();
     EmployeeTask employeeTask = new EmployeeTask();
 
@@ -77,7 +74,7 @@ public class EmployeeController {
 
              employeeService.insertEmployeeToTask(employeeToDisplay);
 
-             taskService.insetTaskToEmployee(taskToDisplay);
+             // taskService.insetTaskToEmployee(taskToDisplay);
 
              employeeService.insertTaskId(employeeToDisplay);
 

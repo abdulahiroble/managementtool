@@ -8,6 +8,10 @@ import java.util.List;
 
 public class CategoryRepository {
 
+    /**
+     * Indsætter en ny manager i databasen.
+     * @param category
+     * */
     public void insertCategoryIntoDatabase(Category category) {
         String insertCategorySQL = "INSERT INTO category (categoryname) VALUES (?)";
 
@@ -23,6 +27,10 @@ public class CategoryRepository {
         }
     }
 
+    /**
+     * Indsætter projectid i category databasen.
+     * @param category
+     * */
     public void insertProjectIdToCategoryDatabase(Category category) {
         String insertUserSQL = "UPDATE category, project SET projectid = idproject";
 
@@ -36,6 +44,9 @@ public class CategoryRepository {
         }
     }
 
+    /**
+     * Vælger alle categorier i databasen og returnerer dem som en ArrayList.
+     * */
     public List<Category> selectAllCategorysFromDatabase() {
 
         String selectAllCategory = "SELECT (categoryname) FROM category INNER JOIN project ON idproject = projectid WHERE idcategory = 1";
@@ -58,6 +69,7 @@ public class CategoryRepository {
         return allCategory;
     }
 
+    /*
     public Category selectCategoryFromDatabase(int idCategory) {
 
         Category categoryToReturn = new Category();
@@ -89,8 +101,12 @@ public class CategoryRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    */
 
+
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");

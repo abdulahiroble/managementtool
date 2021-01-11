@@ -10,24 +10,28 @@ public class TaskRepository {
 
 
 
-        public void insertTaskIntoDatabase(Task task) {
-            String insertTaskSQL = "INSERT INTO task (taskname, time, cost, deadline) VALUES (?, ?, ?, ?)";
+    /**
+     * Indsætter ny task i databasen.
+     * @param task
+     * */
+    public void insertTaskIntoDatabase(Task task) {
+        String insertTaskSQL = "INSERT INTO task (taskname, time, cost, deadline) VALUES (?, ?, ?, ?)";
 
-            try {
+        try {
 
-                PreparedStatement preparedStatement = establishConnection().prepareStatement(insertTaskSQL);
-                preparedStatement.setString(1, task.getTaskname());
-                preparedStatement.setString(2, task.getTime());
-                preparedStatement.setString(3, task.getCost());
-                preparedStatement.setString(4, task.getDeadline());
+            PreparedStatement preparedStatement = establishConnection().prepareStatement(insertTaskSQL);
+            preparedStatement.setString(1, task.getTaskname());
+            preparedStatement.setString(2, task.getTime());
+            preparedStatement.setString(3, task.getCost());
+            preparedStatement.setString(4, task.getDeadline());
+            preparedStatement.execute();
 
-                preparedStatement.execute();
-            } catch (SQLException e) {
+        } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        
+/*
     public void insetTaskToEmployee(Task taskToDisplay) {
         String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";
 
@@ -43,7 +47,13 @@ public class TaskRepository {
         }
     }
 
-        public void insertIdCategoryToCategoryId(Task task) {
+ */
+
+    /**
+     * Indsætter categoryid i task databasen.
+     * @param task
+     * */
+    public void insertIdCategoryToCategoryId(Task task) {
             String insertUserSQL = "UPDATE task, category SET categoryid = idcategory";
     
             try {
@@ -57,6 +67,9 @@ public class TaskRepository {
         }
 
 
+    /**
+     * Vælger alle tasks og indsætter dem i en ArrayList.
+     * */
         public List<Task> selectAllTasksFromDatabase() {
 
             String selectAllTasks = "SELECT * FROM task";
@@ -85,6 +98,10 @@ public class TaskRepository {
             return allTasks;
         }
 
+    /**
+     * Vælger en task ud fra idtask og returnerer et objekt af Task.
+     * @param idtask
+     * */
         public Task selectTaskIdFromDatabase(int idtask) {
 
             Task taskIdToReturn = new Task();
@@ -107,7 +124,7 @@ public class TaskRepository {
             return taskIdToReturn;
         }
 
-    public void updateTaskInfoInDatabase(Task task) {
+   /* public void updateTaskInfoInDatabase(Task task) {
         String updateTaskSQL = "UPDATE task SET taskname = ?, time = ? , cost = ?, deadline = ?";
         try {
 
@@ -125,9 +142,11 @@ public class TaskRepository {
         }
     }
 
+    */
 
-
-
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
         public Connection establishConnection() throws SQLException {
             Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                     "managementtool", "Ef2y7M!d!rA8");
