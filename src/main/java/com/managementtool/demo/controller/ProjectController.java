@@ -35,6 +35,12 @@ public class ProjectController {
     Task task = new Task();
     TaskService taskService = new TaskService();
 
+    /**
+	 * Retunerer createProject.html
+     * @param projectModel
+     * @param request
+	 * @return
+	 */
     @GetMapping("/createProject")
     public String createProject(Model projectModel, HttpServletRequest request) {
 
@@ -46,6 +52,12 @@ public class ProjectController {
         return "createProject";
     }
 
+    /**
+	 * Retunerer projects.html som viser lister af navn på projekt og navn på kategori
+     * @param model
+     * @param request
+	 * @return
+	 */
     @GetMapping("/projects")
     public String showProject(Model model, HttpServletRequest request)
     {
@@ -75,6 +87,13 @@ public class ProjectController {
         return "projects";
     }
 
+    /**
+	 * Redirecter til addcategory.html som opretter et nyt projekt navn
+     * @param model
+     * @param request
+     * @param dataFromForm
+	 * @return
+	 */
     @PostMapping("/postCreateProject")
     public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
 
@@ -99,6 +118,15 @@ public class ProjectController {
         return "redirect:/addcategory";
     }
 
+    /**
+	 * Returnerer subtasks.html som viser alle subtask som findes under en given task
+     * @param model
+     * @param request
+     * @param response
+     * @param idtask
+     * @param "idtask"
+	 * @return
+	 */
     @GetMapping("/subtasks/{idtask}")
     public String employeeFormToView(@PathVariable(value = "idtask") int idtask, Model model, HttpServletResponse response, HttpServletRequest request) {
         

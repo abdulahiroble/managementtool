@@ -23,6 +23,14 @@ public class CategoryController {
     CategoryService categoryService = new CategoryService();
     Category category = new Category();
 
+
+    /**
+	 * Retunere addcategory.html
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request 
+	 * @return
+	 */
     @GetMapping("/addcategory")
         public String showAddCategory(Model model, HttpServletRequest request) {
 
@@ -34,6 +42,14 @@ public class CategoryController {
             
         }
 
+    /**
+	 * Redirecter til projects.html og opretter en ny kategori med oplyste data fra formen.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request 
+     * @param dataFromForm
+	 * @return
+	 */
     @PostMapping("/postAddCategory")
     public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
 

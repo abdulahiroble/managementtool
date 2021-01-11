@@ -24,6 +24,12 @@ public class LoginController {
     Employee employee = new Employee();
     EmployeeService employeeService = new EmployeeService();
 
+
+    /**
+	 * Retunerer createaccount.html
+     * @param managerModel
+	 * @return
+	 */
     @GetMapping("/createaccount")
     public String createAccount(Model managerModel) {
         managerModel.addAttribute("managerModel", managerModel);
@@ -31,6 +37,12 @@ public class LoginController {
         return "createaccount";
     }
 
+    
+    /**
+	 * Retunerer login.html ud fra om man er logget ind enten som manager eller employee
+     * @param userModel
+	 * @return
+	 */
     @GetMapping("/login")
     public String loginAccount(Model usermModel) {
 
@@ -43,6 +55,13 @@ public class LoginController {
         return "login";
     }
 
+    /**
+	 * Retunerer home.html og tager oplysinger fra formen og opretter en ny manager.
+     * @param dataFromForm
+     * @param response
+     * @param request
+	 * @return
+	 */
     @PostMapping("/postCreate")
     public String postCreate(WebRequest dataFromForm, HttpServletResponse response, HttpServletRequest request) {
 
@@ -66,6 +85,13 @@ public class LoginController {
 
     }
 
+    /**
+	 * Redirecter til projects.html hvis man logger ind som manager eller mytasks.html hvis man logger ind som employee. Ellers bliver 
+     * man redirected til create.html hvor man kan opretter en ny manager.
+     * @param dataFromForm
+     * @param response
+	 * @return
+	 */
     @PostMapping("/postLogin")
     public String userLogin(WebRequest dataFromForm, HttpServletResponse response) {
 

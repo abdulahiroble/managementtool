@@ -36,8 +36,21 @@ public class EmployeeController {
     EmployeeTaskService employeeTaskService = new EmployeeTaskService();
     EmployeeTask employeeTask = new EmployeeTask();
 
+        /**
+	 * Retunere addemployeetotask.html og returnerer lister af alle employees, alle tasks og employees som er tilføjet til en 
+     * task.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+	 * @return
+	 */
     @GetMapping("/addemployeetotask")
-    public String addemployeeToTask(Model model) {
+    public String addemployeeToTask(Model model, HttpServletRequest request) {
+
+        int cookieId = managerService.getCookieId(request);
+        Manager activeManager = managerService.getManagerByID(cookieId);
+
+        model.addAttribute("employee", activeManager);
 
         List<Employee> listEmployee = employeeService.getAllEmployees();
 
@@ -55,6 +68,13 @@ public class EmployeeController {
         return "addemployeetotask";
     }
 
+    /**
+	 * Redirecter til addemployeetotask.html og viser en liste af employee og task som er tilføjet sammen.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param dataFromFrom
+	 * @return
+	 */
     @PostMapping("/createAddemployeetotask")
     public String createAddemployeetotask(Model model, WebRequest dataFromForm) {
 
@@ -92,6 +112,13 @@ public class EmployeeController {
 
     
 
+    /**
+	 * Returnerer showEmployeeList og viser en liste af employees
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+	 * @return
+	 */
     @GetMapping("/myemployees")
     public String myEmployees(Model model, HttpServletRequest request) {
 
@@ -103,11 +130,24 @@ public class EmployeeController {
         return showEmployeeList(model, request);
     }
 
+    /**
+	 * Returnerer createemployee.html
+	 * @return
+	 */
     @GetMapping("/createemployee")
     public String createEmployee() {
         return "createemployee";
     }
 
+    /**
+	 * Redirecter til myemployees.html og opdaterer en employees oplysninger.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+     * @param employee
+     * @param "employee"
+	 * @return
+	 */
     @PostMapping("/updateEmployee")
     public String updateEmployee(@ModelAttribute("employee") Employee employee, HttpServletRequest request, Model model) {
 
@@ -126,6 +166,15 @@ public class EmployeeController {
         return "redirect:/myemployees";
     }
 
+    /**
+	 * Redirecter til myemployees.html og sletter en employee.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+     * @param employee
+     * @param "idemployee"
+	 * @return
+	 */
     @GetMapping("/deleteEmployee/{idemployee}")
     public String deleteEmployee(@PathVariable(value = "idemployee") int idemployee, HttpServletRequest request, Model model) {
         
@@ -143,6 +192,16 @@ public class EmployeeController {
         return "redirect:/myemployees";
     }
 
+    /**
+	 * Redirecter til myemployees.html og tager oplysninger fra formen og opretter en employee
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+     * @param response
+     * @param employee
+     * @param dataFromFrom
+	 * @return
+	 */
     @PostMapping("/postCreateEmployee")
     public String postCreateEmployee(WebRequest dataFromForm, HttpServletResponse response, HttpServletRequest request, Model model) {
 
@@ -179,6 +238,16 @@ public class EmployeeController {
 
     }
 
+    /**
+	 * Retunerer updateemployee.html og viser oplysninger for en given employee.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+     * @param response
+     * @param idemployee
+     * @param "idemployee"
+	 * @return
+	 */
     @GetMapping("/employeeFormToView/{idemployee}")
     public String employeeFormToView(@PathVariable(value = "idemployee") int idemployee, Model model, HttpServletResponse response, HttpServletRequest request) {
         
@@ -199,6 +268,13 @@ public class EmployeeController {
         return "updateemployee";
     }
 
+    /**
+	 * Retunerer myemployees.html og viser en liste af employee.
+     * Tjekker om cookieid og managerid stemmer overens
+	 * @param model
+     * @param request
+	 * @return
+	 */
     public String showEmployeeList(Model model, HttpServletRequest request) {
 
         int cookieId = managerService.getCookieId(request);
