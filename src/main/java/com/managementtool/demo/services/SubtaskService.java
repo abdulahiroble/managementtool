@@ -23,7 +23,7 @@ public class SubtaskService {
 
     public void insertNewSubtask(Subtask subtask) { subtaskRespository.insertSubtaskIntoDatabase(subtask); }
 
-    public void updateSubtask(Subtask subtask) { subtaskRespository.updateSubtaskInfoInDatabase(subtask); }
+    // public void updateSubtask(Subtask subtask) { subtaskRespository.updateSubtaskInfoInDatabase(subtask); }
 
 
 }
