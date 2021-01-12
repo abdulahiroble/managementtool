@@ -13,10 +13,18 @@ public class EmployeeService {
     Employee employee = new Employee();
     public List<Employee> employeeList;
 
+        /**
+     * Gemmer ny employee i databasen.
+     * @param employee
+     */
     public void insertNewEmployee(Employee employee) {
         employeeRepository.insertEmployeeIntoDatabase(employee);
     }    
 
+        /**
+     * Henter managerid og sender til employeeid i databasen.
+     * @param employee
+     */
      public void insertManagerId(Employee employee) {
         employeeRepository.insertManagerIdToEmployeeManagerId(employee);
     }     
@@ -25,16 +33,26 @@ public class EmployeeService {
     //     employeeRepository.employeeAndTaskToViewFromDatabase(employee, task);
     // }  
 
-
+        /**
+     * Henter taskid og sender til employeetask i databasen.
+     * @param employee
+     */
     public void  insertTaskId(Employee employee) {
         employeeRepository.insertTaskIdToEmployeeTask(employee);
     }  
    
-
+        /**
+     * Sender et Employee objekt til employeeRepository.
+     * @param employeeToDisplay
+     */
     public void insertEmployeeToTask(Employee employeeToDisplay) {
         employeeRepository.insertEmployeeToTaskInDatbase(employeeToDisplay);
     }     
 
+        /**
+     * Sender en liste med alle employees.
+     * @return
+     */
     public List<Employee> getAllEmployees() {
 
         List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();
@@ -42,10 +60,20 @@ public class EmployeeService {
         return allEmployees;
     }
 
+        /**
+     * Sender alle employees login info tilbage i en liste.
+     * @return
+     */
     public List<Employee> getAllEmployeesLoginInformation() {
         return employeeRepository.selectAllEmployeesLoginInformationFromDatabase();
     }
 
+            /**
+     * Tjekker om intastet login til employee passer med data fra employee database 
+     * @param email 
+     * @param password
+     * @return
+     */
     public Employee loggedInEmployee(String email, String password) {
 
         for (Employee e : allEmployees) {
@@ -57,10 +85,20 @@ public class EmployeeService {
         return employee;
     }
 
+        /**
+     * Henter en employee med id'et
+     * @param idEmployee
+     * @return
+     */
     public Employee getEmployeeByID(int idEmployee) {
         return employeeRepository.selectEmployeeFromDatabase(idEmployee);
     }
 
+        /**
+     * Sender en enkelt employee tilbage, som bliver hentet fra databasen med en email.
+     * @param email
+     * @return
+     */
     public Employee getSingleEmployee(String email) {
         return employeeRepository.selectEmployeeFromDatabaseFromEmail(email);
     }
@@ -69,10 +107,18 @@ public class EmployeeService {
         employee = new Employee();
     }
 
+        /**
+     * Opdaterer den valgte employees data.
+     * @param employee
+     */
     public void updateEmployee(Employee employee) {
         employeeRepository.updateEmployeeInDatabase(employee);
     }
 
+        /**
+     * Sletter en employee fra databasen
+     * @param idEmployee
+     */
     public void deleteEmployee(int idEmployee) {
 
         employeeRepository.deleteEmployeeFromDatabase(idEmployee);
