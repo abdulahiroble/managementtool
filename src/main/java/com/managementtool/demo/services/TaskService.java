@@ -10,6 +10,10 @@ public class TaskService {
     TaskRepository taskRepository = new TaskRepository();
 
 
+        /**
+     * Sender en liste med alle tasks.
+     * @return
+     */
     public List<Task> getAllTasks() {
 
         List<Task> allTasks = taskRepository.selectAllTasksFromDatabase();
@@ -17,22 +21,39 @@ public class TaskService {
         return allTasks;
     }
 
+        /**
+     * Viser task sammen employee
+     * @param taskToDisplay
+     * */
     public void insetTaskToEmployee(Task taskToDisplay) {
         taskRepository.insetTaskToEmployee(taskToDisplay);
     }     
 
+        /**
+     * Henter idcategory og gemmer det i task.
+     * @param task
+     */
     public void insertCategoryId(Task task) {
         taskRepository.insertIdCategoryToCategoryId(task);
     }   
 
+        /**
+     * Gemmer en task i databasen.
+     * @param task
+     */
     public void insertNewTask(Task task) { taskRepository.insertTaskIntoDatabase(task);
     }
 
+        /**
+     * Henter en task med id'et
+     * @param idtask
+     * @return
+     */
     public Task getTaskById(int idtask) {
         return taskRepository.selectTaskIdFromDatabase(idtask);
     }
 
-    public void updateTask(Task task) {
-        taskRepository.updateTaskInfoInDatabase(task);
-    }
+    // public void updateTask(Task task) {
+    //     taskRepository.updateTaskInfoInDatabase(task);
+    // }
 }

@@ -8,6 +8,10 @@ import java.util.List;
 
 public class CategoryRepository {
 
+    /**
+     * Indsætter en ny manager i databasen.
+     * @param category
+     * */
     public void insertCategoryIntoDatabase(Category category) {
         String insertCategorySQL = "INSERT INTO category (categoryname) VALUES (?)";
 
@@ -23,6 +27,10 @@ public class CategoryRepository {
         }
     }
 
+        /**
+     * Indsætter projectid i category databasen.
+     * @param category
+     * */
     public void insertProjectIdToCategoryDatabase(Category category) {
         String insertUserSQL = "UPDATE category, project SET projectid = idproject";
 
@@ -36,6 +44,9 @@ public class CategoryRepository {
         }
     }
 
+        /**
+     * Vælger alle categorier i databasen og returnerer dem som en ArrayList.
+     * */
     public List<Category> selectAllCategorysFromDatabase() {
 
         String selectAllCategory = "SELECT (categoryname) FROM category INNER JOIN project ON idproject = projectid WHERE idcategory = 1";
@@ -58,39 +69,43 @@ public class CategoryRepository {
         return allCategory;
     }
 
-    public Category selectCategoryFromDatabase(int idCategory) {
+    // public Category selectCategoryFromDatabase(int idCategory) {
 
-        Category categoryToReturn = new Category();
+    //     Category categoryToReturn = new Category();
 
-        String selectCategory = "SELECT * FROM category WHERE idcategory = ?";
+    //     String selectCategory = "SELECT * FROM category WHERE idcategory = ?";
 
-        try {
-            PreparedStatement preparedStatement = establishConnection().prepareStatement(selectCategory);
-            preparedStatement.setInt(1, idCategory);
+    //     try {
+    //         PreparedStatement preparedStatement = establishConnection().prepareStatement(selectCategory);
+    //         preparedStatement.setInt(1, idCategory);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+    //         ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                categoryToReturn = new Category(resultSet.getInt(1), resultSet.getString(2));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return categoryToReturn;
-    }
+    //         while (resultSet.next()) {
+    //             categoryToReturn = new Category(resultSet.getInt(1), resultSet.getString(2));
+    //         }
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    //     return categoryToReturn;
+    // }
 
-    public void deleteCategoryFromDatabase(int idCategory){
-        String deleteCategorySQL = "DELETE FROM category WHERE idcategory = ?";
-        try {
-            PreparedStatement preparedStatement = establishConnection().prepareStatement(deleteCategorySQL);
-            preparedStatement.setInt(1, idCategory);
+    // public void deleteCategoryFromDatabase(int idCategory){
+    //     String deleteCategorySQL = "DELETE FROM category WHERE idcategory = ?";
+    //     try {
+    //         PreparedStatement preparedStatement = establishConnection().prepareStatement(deleteCategorySQL);
+    //         preparedStatement.setInt(1, idCategory);
 
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    //         preparedStatement.execute();
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    // }
 
+
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");

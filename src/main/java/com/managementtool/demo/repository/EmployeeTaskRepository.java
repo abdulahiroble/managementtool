@@ -13,6 +13,10 @@ import com.managementtool.demo.models.EmployeeTask;
 
 public class EmployeeTaskRepository {
 
+        /**
+     * Indsætter ny employeeTask i databasen.
+     * @param employeeTask
+     * */
     public void insertEmployeeTaskIntoDatabase(EmployeeTask employeeTask) {
         String insertUserSQL = "INSERT INTO employee_task (firstname, taskname) VALUES (?, ?)";
 
@@ -29,6 +33,9 @@ public class EmployeeTaskRepository {
         }
     }
 
+    /**
+     * Vælger alle employeesTask og indsætter dem i en ArrayList.
+     * */
     public List<EmployeeTask> selectAllEmployeesTask() {
 
         String selectAllEmployeesTask = "SELECT * FROM employee_task";
@@ -51,6 +58,9 @@ public class EmployeeTaskRepository {
         return AllEmployeesTask;
     }
 
+        /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");
