@@ -10,6 +10,10 @@ import java.util.List;
 public class SubtaskRespository {
 
 
+    /**
+     * Indsætter ny subtask i databasen.
+     * @param subtask
+     * */
     public void insertSubtaskIntoDatabase(Subtask subtask) {
         String insertTaskSQL = "INSERT INTO subtask (subtaskname, date) VALUES (?, ?)";
 
@@ -27,6 +31,10 @@ public class SubtaskRespository {
         }
     }
 
+    /**
+     * Indsætter taskid i subtask databasen.
+     * @param subtask
+     * */
     public void insertIdTaskToTaskIdInsubtask(Subtask subtask) {
         String insertUserSQL = "UPDATE subtask, task SET taskid = idtask";
 
@@ -42,7 +50,7 @@ public class SubtaskRespository {
 
 
 
-    public void updateSubtaskInfoInDatabase(Subtask subtask) {
+    /* public void updateSubtaskInfoInDatabase(Subtask subtask) {
         String updateSubtaskSQL = "UPDATE subtask SET subtaskname = ?, date = ?";
         try {
 
@@ -59,7 +67,12 @@ public class SubtaskRespository {
         }
     }
 
+     */
 
+
+    /**
+     * Vælger alle subtasks og indsætter dem i en ArrayList.
+     * */
     public List<Subtask> selectAllSubtasksFromDatabase() {
 
         String selectAllSubtask = "SELECT * FROM subtask";
@@ -86,7 +99,9 @@ public class SubtaskRespository {
         return allSubtasks;
     }
 
-
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");

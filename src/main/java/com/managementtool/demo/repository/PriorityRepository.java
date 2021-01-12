@@ -29,7 +29,9 @@ public class PriorityRepository {
         return priorityToReturn;
     }
 
-
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");

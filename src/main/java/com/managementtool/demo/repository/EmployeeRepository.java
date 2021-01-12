@@ -10,6 +10,11 @@ import java.util.List;
 
 public class EmployeeRepository {
 
+
+    /**
+     * Indsætter ny employee i databasen.
+     * @param employee
+     * */
     public void insertEmployeeIntoDatabase(Employee employee) {
         String insertUserSQL = "INSERT INTO employee (firstname, lastname, email, password, address, postal, city, profession, rate, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -34,6 +39,10 @@ public class EmployeeRepository {
         }
     }
 
+    /**
+     * Indsætter managerid i employee databasen.
+     * @param employee
+     * */
     public void insertManagerIdToEmployeeManagerId(Employee employee) {
         String insertUserSQL = "UPDATE employee, manager SET managerid = idmanager";
 
@@ -48,6 +57,10 @@ public class EmployeeRepository {
         }
     }
 
+    /**
+     * Indsætter taskid til employee databasen.
+     * @param employee
+     * */
     public void insertTaskIdToEmployeeTask(Employee employee) {
         String insertUserSQL = "UPDATE employee, task SET taskidemployee = idtask";
 
@@ -63,7 +76,7 @@ public class EmployeeRepository {
     }
 
     
-    public void employeeAndTaskToViewFromDatabase(Employee employee, Task task) {
+    /* public void employeeAndTaskToViewFromDatabase(Employee employee, Task task) {
         String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = taskidemployee WHERE idtask = ?";
 
         try {
@@ -77,9 +90,14 @@ public class EmployeeRepository {
             System.out.println(e.getMessage());
         }
     }
+     */
 
 
 
+    /**
+     * Indsætter ny employee i employeeToDisplay databasen.
+     * @param employeeToDisplay
+     * */
     public void insertEmployeeToTaskInDatbase(Employee employeeToDisplay) {
         String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";
 
@@ -95,6 +113,9 @@ public class EmployeeRepository {
         }
     }
 
+    /**
+     * Vælger alle employees og indsætter dem i en ArrayList.
+     * */
     public List<Employee> selectAllEmployeesFromDatabase() {
 
         String selectAllEmployees = "SELECT * FROM employee WHERE managerid = 1";
@@ -120,6 +141,10 @@ public class EmployeeRepository {
         return allEmployees;
     }
 
+    /**
+     * Vælger en enkelt employee fra databasen ud fra idEmployee og retunerer et objekt af Employee.
+     * @param idEmployee
+     * */
     public Employee selectEmployeeFromDatabase(int idEmployee) {
 
         Employee employeeToReturn = new Employee();
@@ -144,6 +169,10 @@ public class EmployeeRepository {
         return employeeToReturn;
     }
 
+    /**
+     * Opdaterer en enkelt employee's data i databasen.
+     * @param employee
+     * */
     public void updateEmployeeInDatabase(Employee employee) {
 
         String updateemployeeSQL = "UPDATE employee SET firstname = ?, lastname = ?, address = ?, postal = ?, city = ?, profession = ?, rate = ? WHERE idemployee = ?";
@@ -170,6 +199,10 @@ public class EmployeeRepository {
         }
     }
 
+    /**
+     * Vælger en enkelt employee i databasen ud fra email og returnerer et objekt af Employee.
+     * @param email
+     * */
     public Employee selectEmployeeFromDatabaseFromEmail(String email) {
 
         Employee employeeToReturn = new Employee();
@@ -194,6 +227,10 @@ public class EmployeeRepository {
         return employeeToReturn;
     }
 
+
+    /**
+     * Vælger alle employees email og password og returnerer dem som en ArrayList.
+     * */
     public List<Employee> selectAllEmployeesLoginInformationFromDatabase() {
 
         String selectAllUsers = "SELECT * FROM employee";
@@ -216,6 +253,10 @@ public class EmployeeRepository {
         return allEmployeesLoginInformation;
     }
 
+    /**
+     * Sletter en enkelt employee i databasen.
+     * @param idEmployee
+     * */
     public void deleteEmployeeFromDatabase(int idEmployee){
         String deleteCategorySQL = "DELETE FROM employee WHERE idemployee = ?";
         try {
@@ -229,7 +270,9 @@ public class EmployeeRepository {
     }
 
 
-
+    /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");

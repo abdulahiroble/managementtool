@@ -21,10 +21,19 @@ public class ManagerService {
     public List<Manager> allManagers = managerRepository.selectAllManagersFromDatabase();
     Manager manager = new Manager();
 
+    /**
+     * Gemmer en manager i databasen
+     * @param manager
+     */
     public void insertNewManager(Manager manager) {
         managerRepository.insertUserIntoDatabase(manager);
     }
 
+    /**
+     * Henter en cookie fra browseren som har employeens id.
+     * @param request
+     * @return
+     */
     public int getCookieId(HttpServletRequest request) {
 
 		Cookie cookie[] = request.getCookies();
@@ -39,21 +48,40 @@ public class ManagerService {
 		
 		return Integer.parseInt(cookieId.getValue());
     }
-    
+
+    /**
+     * Henter en manager med id'et
+     * @param idmanager
+     * @return
+     */
     public Manager getManagerByID(int idmanager)
     {
         return managerRepository.selectManagerFromDatabaseBasedOnId(idmanager);
     }
 
-
+    /**
+     * Sender alle manager login info tilbage i en liste.
+     * @return
+     */
     public List<Manager> getAllManagersLoginInformation() {
         return managerRepository.selectAllManagersLoginInformationFromDatabase();
     }
 
+    /**
+     * Sender en enkelt manager tilbage, som bliver hentet fra databasen med en email.
+     * @param email
+     * @return
+     */
     public Manager getSingleManager(String email){
         return managerRepository.selectManagerFromDatabaseFromEmail(email);
     }
 
+    /**
+     * Tjekker om brugens login kredintialer matcher en manager.
+     * @param email
+     * @param password
+     * @return
+     */
     public Manager loggedInManager(String email, String password){
 
         for(Manager m : allManagers){
