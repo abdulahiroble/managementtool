@@ -32,7 +32,7 @@ public class TaskService {
         return taskRepository.selectTaskIdFromDatabase(idtask);
     }
 
-    public void updateTask(Task task) {
-        taskRepository.updateTaskInfoInDatabase(task);
-    }
+    // public void updateTask(Task task) {
+    //     taskRepository.updateTaskInfoInDatabase(task);
+    // }
 }

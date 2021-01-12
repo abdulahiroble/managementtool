@@ -9,7 +9,10 @@ import java.util.List;
 public class TaskRepository {
 
 
-
+            /**
+     * Indsætter ny task i databasen.
+     * @param task
+     * */
         public void insertTaskIntoDatabase(Task task) {
             String insertTaskSQL = "INSERT INTO task (taskname, time, cost, deadline) VALUES (?, ?, ?, ?)";
 
@@ -27,7 +30,10 @@ public class TaskRepository {
             }
         }
 
-        
+    /**
+     * Viser task sammen employee
+     * @param taskToDisplay
+     * */
     public void insetTaskToEmployee(Task taskToDisplay) {
         String insertUserSQL = "SELECT * FROM employee INNER JOIN task ON idtask = managerid group by idtask";
 
@@ -43,6 +49,10 @@ public class TaskRepository {
         }
     }
 
+        /**
+     * Indsætter categoryid i task databasen.
+     * @param task
+     * */
         public void insertIdCategoryToCategoryId(Task task) {
             String insertUserSQL = "UPDATE task, category SET categoryid = idcategory";
     
@@ -56,7 +66,9 @@ public class TaskRepository {
             }
         }
 
-
+            /**
+     * Vælger alle tasks og indsætter dem i en ArrayList.
+     * */
         public List<Task> selectAllTasksFromDatabase() {
 
             String selectAllTasks = "SELECT * FROM task";
@@ -85,6 +97,10 @@ public class TaskRepository {
             return allTasks;
         }
 
+            /**
+     * Vælger en task ud fra idtask og returnerer et objekt af Task.
+     * @param idtask
+     * */
         public Task selectTaskIdFromDatabase(int idtask) {
 
             Task taskIdToReturn = new Task();
@@ -107,27 +123,29 @@ public class TaskRepository {
             return taskIdToReturn;
         }
 
-    public void updateTaskInfoInDatabase(Task task) {
-        String updateTaskSQL = "UPDATE task SET taskname = ?, time = ? , cost = ?, deadline = ?";
-        try {
+    // public void updateTaskInfoInDatabase(Task task) {
+    //     String updateTaskSQL = "UPDATE task SET taskname = ?, time = ? , cost = ?, deadline = ?";
+    //     try {
 
-            PreparedStatement preparedStatement = establishConnection().prepareStatement(updateTaskSQL);
-            preparedStatement.setString(1, task.getTaskname());
-            preparedStatement.setString(2, task.getTime());
-            preparedStatement.setString(3, task.getCost());
-            preparedStatement.setString(4, task.getDeadline());
-
-
-            System.out.println(preparedStatement.executeUpdate());
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    //         PreparedStatement preparedStatement = establishConnection().prepareStatement(updateTaskSQL);
+    //         preparedStatement.setString(1, task.getTaskname());
+    //         preparedStatement.setString(2, task.getTime());
+    //         preparedStatement.setString(3, task.getCost());
+    //         preparedStatement.setString(4, task.getDeadline());
 
 
+    //         System.out.println(preparedStatement.executeUpdate());
+
+    //     } catch (SQLException e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    // }
 
 
+
+            /**
+     * Forbinder til vores cloud baseret database.
+     * */
         public Connection establishConnection() throws SQLException {
             Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                     "managementtool", "Ef2y7M!d!rA8");
