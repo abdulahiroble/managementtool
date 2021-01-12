@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectRepository {
+
+        /**
+     * Indsætter nyt project i databasen.
+     * @param project
+     * */
     public void insertProjectIntoDatabase(Project project) {
         String insertUserSQL = "INSERT INTO project (projectname) VALUES (?)";
 
@@ -22,6 +27,10 @@ public class ProjectRepository {
         }
     }
 
+        /**
+     * Indsætter managerid i project databasen.
+     * @param employee
+     * */
     public void insertManagerIdToProjectManagerId(Project project) {
         String insertUserSQL = "UPDATE project, manager SET managerid = idmanager";
 
@@ -35,7 +44,9 @@ public class ProjectRepository {
         }
     }
 
-
+        /**
+     * Vælger alle projects og indsætter dem i en ArrayList.
+     * */
     public List<Project> selectAllProjectsFromDatabase() {
 
         String selectAllProjects = "SELECT (projectname) FROM project INNER JOIN manager ON idmanager = managerid WHERE idproject = 1";
@@ -59,6 +70,9 @@ public class ProjectRepository {
     }
 
 
+        /**
+     * Forbinder til vores cloud baseret database.
+     * */
     public Connection establishConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
                 "managementtool", "Ef2y7M!d!rA8");
