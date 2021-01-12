@@ -21,9 +21,9 @@ public class EmployeeService {
         employeeRepository.insertManagerIdToEmployeeManagerId(employee);
     }     
 
-    public void  showEmployeeToTask(Employee employee, Task task) {
-        employeeRepository.employeeAndTaskToViewFromDatabase(employee, task);
-    }  
+    // public void  showEmployeeToTask(Employee employee, Task task) {
+    //     employeeRepository.employeeAndTaskToViewFromDatabase(employee, task);
+    // }  
 
 
     public void  insertTaskId(Employee employee) {
