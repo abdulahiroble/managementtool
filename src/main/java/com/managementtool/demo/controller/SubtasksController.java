@@ -25,6 +25,12 @@ public class SubtasksController {
     Subtask subtask = new Subtask();
     TaskService taskService = new TaskService();
 
+    /**
+	 * Returnerer createSubtask.html siden.
+     * @param projectModel
+     * @param request
+	 * @return
+	 */
     @GetMapping("/createSubtask")
     public String createSubtask(Model projectModel, HttpServletRequest request) {
 
@@ -36,6 +42,15 @@ public class SubtasksController {
         return "createSubtask";
     }
     
+    /**
+	 * Returnerer subtasks.html siden.
+     * @param subtaskModel
+     * @param request
+     * @param request
+     * @param idtask
+     * @param "idtask"
+	 * @return
+	 */
     @GetMapping("/subtasks")
     public String showSubtasks(Model subtaskModel, HttpServletRequest request, @PathVariable(value = "idtask") int idtask) {
 
@@ -61,6 +76,13 @@ public class SubtasksController {
         return "subtasks";
     }
 
+    /**
+	 * Redirecter til subtasks.html siden efter subtask er opretter med navn og dato
+     * @param model
+     * @param dataFromForm
+     * @param request
+	 * @return
+	 */
      @PostMapping("/postCreateSubtask")
      public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
 

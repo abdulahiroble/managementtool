@@ -17,12 +17,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+
 @Controller
 public class TaskController {
     ManagerService managerService = new ManagerService();
     TaskService taskService = new TaskService();
     Task task = new Task();
     
+    /**
+	 * Returnerer createtask.html.
+     * @param projectModel
+     * @param request
+	 * @return
+	 */
     @GetMapping("/createtask")
     public String createProject(Model projectModel, HttpServletRequest request) {
 
@@ -34,6 +41,13 @@ public class TaskController {
         return "createtask";
     }
 
+     /**
+	 * Redirecter til projects.html som opretter en ny task hvor den tager data fra formen.
+     * @param model
+     * @param dataFromForm
+     * @param request
+	 * @return
+	 */
      @PostMapping("/postCreateTask")
      public String postCreate(Model model, WebRequest dataFromForm, HttpServletRequest request) {
 
