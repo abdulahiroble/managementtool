@@ -2,9 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
     <title>My Tasks</title>
   </head>
   <body>
     <h1>My task</h1>
+
+    <table border="1" class="table table-striped table-responsive-md">
+      <thead>
+        <tr>
+          <th>Task</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="task : ${listEmployeeTask}">
+          <td th:text="${task.getTaskname()}"></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

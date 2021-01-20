@@ -294,4 +294,18 @@ public class EmployeeController {
         return "myemployees";
     }
 
+    /**
+	 * Retunerer mytasks.html
+	 * @return
+	 */
+    @GetMapping("/mytasks")
+    public String myTask(Model model) {
+
+        List<EmployeeTask> listEmployeeTask = employeeTaskService.getAllEmployeesTask();
+        
+        model.addAttribute("listEmployeeTask", listEmployeeTask);
+
+        return "mytasks";
+    }
+
 }
