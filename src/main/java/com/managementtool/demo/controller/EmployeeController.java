@@ -299,7 +299,12 @@ public class EmployeeController {
 	 * @return
 	 */
     @GetMapping("/mytasks")
-    public String homePage() {
+    public String myTask(Model model) {
+
+        List<EmployeeTask> listEmployeeTask = employeeTaskService.getAllEmployeesTask();
+        
+        model.addAttribute("listEmployeeTask", listEmployeeTask);
+
         return "mytasks";
     }
 
