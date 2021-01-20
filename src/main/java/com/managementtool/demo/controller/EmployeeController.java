@@ -294,4 +294,13 @@ public class EmployeeController {
         return "myemployees";
     }
 
+    /**
+	 * Retunerer mytasks.html
+	 * @return
+	 */
+    @GetMapping("/mytasks")
+    public String homePage() {
+        return "mytasks";
+    }
+
 }
