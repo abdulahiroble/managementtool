@@ -273,10 +273,10 @@ public class EmployeeRepository {
         /**
      * Forbinder til vores cloud baseret database.
      * */
-    public Connection establishConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://den1.mysql6.gear.host/managementtool",
-                "managementtool", "Ef2y7M!d!rA8");
+        public Connection establishConnection() throws SQLException {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbprojectmanager?serverTimezone=UTC",
+                    "root", "password");
 
-        return connection;
-    }
+            return connection;
+        }
 }
