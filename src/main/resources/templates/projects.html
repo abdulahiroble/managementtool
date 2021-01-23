@@ -9,30 +9,24 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../static/style.css">
   </head>
   <body>
-    <div style="display: flex; margin-top: 30px; margin-bottom: 30px">
-      <h2>Create New Project</h2>
-      <a href="/createProject"
-        ><svg
-          height="40px"
-          width="40px"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <g data-name="Layer 2">
-            <g data-name="plus-circle">
-              <rect width="24" height="24" opacity="0" />
-              <path
-                d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-              />
-              <path
-                d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
-              />
-            </g>
-          </g></svg>    
-        </a>
-    </div>
+    <img
+    th:src="@{img/Logo.png}"
+    class="logo"
+    src="/src/main/resources/static/img/Logo.png"
+    style="display: block;
+    margin: 0 auto; width: 250px; margin-bottom: -100px; margin-top: -30px;"
+    alt="logo"
+  />
+    <ul class="topnav" style="list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: greenyellow; display: flex; justify-content: space-evenly; margin-top: 40px; padding: 20px;">
+      <li><a class="active" href="/projects" style="color: black; font-size: 20px; font-weight: bold;">My Project</a></li>
+      <li><a href="/myemployees" style="color: black; font-size: 20px; font-weight: bold;">My Employees</a></li>
+      <li><a href="/createProject" style="color: black; font-size: 20px; font-weight: bold;">New Project</a></li>
+      <li class="right"><a style="color: black; font-size: 20px; font-weight: bold;" href="#">Contact</a></li>
+    </ul>
+    <br>
     <div th:each="project : ${projectName}">
       <h2 style="display: flex;">Project name: <div th:text="${project.getProjectname()}"></div></h2> 
     </div>
@@ -91,26 +85,5 @@
       </div>
       </div>
   </section>
-  <br>
-  <h4>Create New Task</h4>
-  <a href="/createtask"
-    ><svg
-      height="40px"
-      width="40px"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      <g data-name="Layer 2">
-        <g data-name="plus-circle">
-          <rect width="24" height="24" opacity="0" />
-          <path
-            d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-          />
-          <path
-            d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"
-          />
-        </g>
-      </g></svg>    
-    </a>
   </body>
 </html>
