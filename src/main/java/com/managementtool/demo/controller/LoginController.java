@@ -68,7 +68,7 @@ public class LoginController {
         try {
             String firstname = dataFromForm.getParameter("firstname");
             String lastname = dataFromForm.getParameter("lastname");
-            String company = dataFromForm.getParameter("email");
+            String company = dataFromForm.getParameter("company");
             String email = dataFromForm.getParameter("email");
             String password = dataFromForm.getParameter("password");
             int phone = Integer.parseInt(request.getParameter("phone"));
@@ -105,11 +105,11 @@ public class LoginController {
             if (manager.getEmail().equals(enteredEmail) && manager.getPassword().equals(enteredPassword)) {
                 
                 manager = managerService.loggedInManager(enteredEmail, enteredPassword);
-                 
-                String idmanager = "" + managerService.getSingleManager(dataFromForm.getParameter("email")).getIdmanager();
-                
+
+                String idmanager = "" + managerService.getSingleManager(dataFromForm.getParameter("password")).getIdmanager();
+
                 Cookie cookie = new Cookie("idmanager", idmanager);
-                 
+
                 response.addCookie(cookie);
 
 
