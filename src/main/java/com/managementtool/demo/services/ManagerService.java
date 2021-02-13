@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 public class ManagerService {
 
     ManagerRepository managerRepository = new ManagerRepository();
+
     public List<Manager> allManagers = managerRepository.selectAllManagersFromDatabase();
+    
     Manager manager = new Manager();
 
         /**
@@ -71,8 +73,8 @@ public class ManagerService {
      * @param email
      * @return
      */
-    public Manager getSingleManager(String email){
-        return managerRepository.selectManagerFromDatabaseFromEmail(email);
+    public Manager getSingleManager(String password){
+        return managerRepository.selectManagerFromDatabaseFromPassword(password);
     }
 
         /**

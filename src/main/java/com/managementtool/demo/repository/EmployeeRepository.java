@@ -119,7 +119,7 @@ public class EmployeeRepository {
      * */
     public List<Employee> selectAllEmployeesFromDatabase() {
 
-        String selectAllEmployees = "SELECT * FROM employee WHERE managerid = 1";
+        String selectAllEmployees = "SELECT * FROM employee";
 
         List<Employee> allEmployees = new ArrayList<>();
 

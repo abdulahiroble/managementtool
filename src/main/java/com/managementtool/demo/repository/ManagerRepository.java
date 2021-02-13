@@ -62,19 +62,17 @@ public class ManagerRepository {
      * Vælger en enkelt manager i databasen ud fra email og returnerer et objekt af Manager.
      * @param email
      * */
-    public Manager selectManagerFromDatabaseFromEmail(String email) {
+    public Manager selectManagerFromDatabaseFromPassword(String password) {
 
         Manager managerToReturn = new Manager();
 
-        String selectManager = "SELECT * FROM manager WHERE email = ?";
+        String selectManager = "SELECT * FROM manager WHERE password = ?";
 
         try {
             PreparedStatement preparedStatement = establishConnection().prepareStatement(selectManager);
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            System.out.println(preparedStatement.executeQuery());
 
             while (resultSet.next()) {
                 managerToReturn = new Manager(

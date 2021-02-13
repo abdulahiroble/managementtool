@@ -9,8 +9,11 @@ import com.managementtool.demo.repository.EmployeeRepository;
 public class EmployeeService {
     
     EmployeeRepository employeeRepository = new EmployeeRepository();
+    
     public List<Employee> allEmployees = employeeRepository.selectAllEmployeesFromDatabase();
+    
     Employee employee = new Employee();
+    
     public List<Employee> employeeList;
 
         /**
